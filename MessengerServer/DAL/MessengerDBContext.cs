@@ -15,11 +15,12 @@ namespace MessengerServer.DAL
         public MessengerDBContext(DbContextOptions<MessengerDBContext> options)
             :base(options)
         {
-            Database.EnsureCreated();
+            Database.Migrate();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // обозначаем первичные ключи в таблицах
             modelBuilder.Entity<User>()
                 .HasKey(x => x.Id);
 
@@ -32,38 +33,44 @@ namespace MessengerServer.DAL
             modelBuilder.Entity<Image>()
                 .HasKey(x => x.Id);
 
+            modelBuilder.Entity<UserPicture>()
+                .HasKey(x => x.Id);
+
+            // составной первичный ключ для таблицы связи многие-ко-многим
             modelBuilder.Entity<ChatsUsers>()
                 .HasKey(cu => new { cu.UserId, cu.ChatId });
 
-             modelBuilder.Entity<ChatsUsers>()
-                .HasOne(x => x.User)
-                .WithMany(x => x.Chats)
-                .HasForeignKey(x => x.UserId)
-                .OnDelete(DeleteBehavior.SetNull);
+            // настройки отношений в промежуточной таблице ChatsUsers
+            modelBuilder.Entity<ChatsUsers>()
+               .HasOne(x => x.User)
+               .WithMany(x => x.Chats)
+               .HasForeignKey(x => x.UserId);
 
             modelBuilder.Entity<ChatsUsers>()
                 .HasOne(x => x.Chat)
                 .WithMany(x => x.Users)
-                .HasForeignKey(x => x.ChatId)
-                .OnDelete(DeleteBehavior.SetNull);
+                .HasForeignKey(x => x.ChatId);
 
+            // связь один-к-одному таблиц User <-> UserPicture
             modelBuilder.Entity<User>()
                 .HasOne(x => x.Avatar)
-                .WithOne(x => x.UserAvatar)
-                .HasForeignKey<Image>(x => x.UserId)
-                .OnDelete(DeleteBehavior.SetNull);
+                .WithOne(x => x.PictureOwner)
+                .HasForeignKey<UserPicture>(x => x.UserId);
 
+            // связь один-к-многим таблиц User <->> Messages
             modelBuilder.Entity<User>()
                 .HasMany(x => x.Messages)
                 .WithOne(x => x.Sender)
                 .IsRequired();
 
-            modelBuilder.Entity<Message>()
-                .HasOne(x => x.Picture)
-                .WithOne(x => x.Message)
-                .HasForeignKey<Image>(x => x.MessageId)
+            // связь один-к-одному таблиц Messages <-> Images
+            modelBuilder.Entity<Image>()
+                .HasOne(x => x.Message)
+                .WithOne(x => x.Picture)
+                .HasForeignKey<Message>(x => x.ImageId)
                 .OnDelete(DeleteBehavior.SetNull);
 
+            // связь один-ко-многим таблиц Chat <->> Messages
             modelBuilder.Entity<Chat>()
                 .HasMany(x => x.Messages)
                 .WithOne(x => x.Chat)

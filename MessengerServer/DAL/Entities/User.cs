@@ -16,8 +16,8 @@ namespace MessengerServer.DAL.Entities
         public string Password { get; set; }
 
         // nav property
-        public int? ImageId { get; set; }
-        public Image Avatar { get; set; }
+        public int? UserPictureId { get; set; }
+        public UserPicture Avatar { get; set; }
 
         public IEnumerable<ChatsUsers> Chats { get; set; }
         public IEnumerable<Message> Messages { get; set; }

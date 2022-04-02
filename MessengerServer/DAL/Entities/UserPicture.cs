@@ -2,7 +2,7 @@
 
 namespace MessengerServer.DAL.Entities
 {
-    public class Image
+    public class UserPicture
     {
         public int Id { get; set; }
 
@@ -10,7 +10,7 @@ namespace MessengerServer.DAL.Entities
         public string Path { get; set; }
 
         // nav property
-        public int MessageId { get; set; }
-        public Message Message { get; set; }
+        public int? UserId { get; set; }
+        public User PictureOwner { get; set; }
     }
 }
