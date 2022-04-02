@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MessengerServer.Entities
+namespace MessengerServer.DAL.Entities
 {
     public class Image
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace MessengerServer.Entities
+namespace MessengerServer.DAL.Entities
 {
     public class Chat
     {

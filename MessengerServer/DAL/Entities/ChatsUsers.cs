@@ -1,4 +1,4 @@
-﻿namespace MessengerServer.Entities
+﻿namespace MessengerServer.DAL.Entities
 {
     public class ChatsUsers
     {
