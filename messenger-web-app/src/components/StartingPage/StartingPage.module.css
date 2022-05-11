@@ -1,30 +1,27 @@
-.main-page {
-    /* border: 5vw solid black;
-    width: 100%;
-    height: 100%; */
-}
+/* .starting-page {
+} */
 
-.main-page__icon {
+.starting-page__icon {
     width: 30vw;
     margin: 0 auto;
 }
 
-.main-page__icon img {
+.starting-page__icon img {
     width: 100%;
 }
 
-.main-page__title {
+.starting-page__title {
     margin: 0 auto;
     font-size: 2rem;
     width: fit-content;
 }
 
-.main-page__links {
+.starting-page__links {
     margin: 10vh auto;
     display: flex;
 }
 
-.main-page__link {    
+.starting-page__link {    
     margin: 0 auto;
     display: block;
     background-color: orangered;
@@ -35,11 +32,11 @@
     transition-duration: 0.3s;
 }
 
-.main-page__link:hover,
-.main-page__link:focus {
+.starting-page__link:hover,
+.starting-page__link:focus {
     transform: scale(1.2);
 }
 
-.main-page__link:active {
+.starting-page__link:active {
     transform: scale(0.8);
 }

@@ -1,28 +1,28 @@
-/* .login {
+/* .register {
 } */
 
-.login__messenger-icon {
+.register__messenger-icon {
     width: 30vw;
     margin: 0 auto;
 }
 
-.login__messenger- img {
+.register__messenger- img {
     width: 100%;
 }
 
-.login__title {
+.register__title {
     margin: 0 auto;
     font-size: 2rem;
     width: fit-content;
 }
 
-.login__form {
+.register__form {
     margin: 5vh auto;
     display: block;
     width: 25vw;
 }
 
-.login__input {
+.register__input {
     display: block;
     outline: 2px solid black;
     border-radius: 20px;
@@ -30,7 +30,7 @@
     margin: 2vh auto;
 }
 
-.login__submit-button {    
+.register__submit-button {    
     margin: 2vh auto;
     display: block;
     background-color: orangered;
@@ -41,11 +41,11 @@
     transition-duration: 0.3s;
 }
 
-.login__submit-button:hover,
-.login__submit-button:focus {
+.register__submit-button:hover,
+.register__submit-button:focus {
     transform: scale(1.2);
 }
 
-.login__submit-button:active {
+.register__submit-button:active {
     transform: scale(0.8);
 }
