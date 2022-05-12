@@ -68,3 +68,54 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+////////////////////////////////////////
+query: "login"
+-----------------------
+input: 
+
+    email - string
+    password - string
+-----------------------
+requestedData:
+
+    loginAllowed - boolean
+    userID - string
+    userName - string
+    rejectReason - string
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+////////////////////////////////////////
+query: "register"
+-----------------------
+input: 
+
+    email - string
+    password - string
+-----------------------
+requestedData:
+
+    registerAllowed - boolean
+    userID - string
+    userName - string
+    rejectReason - string
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+////////////////////////////////////////
+query: "userChats"
+-----------------------
+input: 
+    
+    userID - string
+-----------------------
+requestedData:
+
+    userChats - array | List of user chats at left satisfied
+    [
+        { - object
+            chatName - string
+            chatIcon - image (if NULL then chat has default image)
+            lastMessage - string (if it's image then expecting string "Image") (if it's text with image then expecting only text)
+            dateLastMessage - string | date-format: "DD.MM.YY HH:MM"
+        },        
+        {...},
+    ]
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

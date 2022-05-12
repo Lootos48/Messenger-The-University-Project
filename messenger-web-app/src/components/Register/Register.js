@@ -21,8 +21,8 @@ window.addEventListener("click", (event) => {
 
         const registerQueryObj = {
             query: "register",
-            email: document.body.querySelector("register__email-input"),
-            password: document.body.querySelector("register__password-input"),
+            email: document.body.querySelector("register__email-input").value,
+            password: document.body.querySelector("register__password-input").value,
         }
 
         fetch("http://localhost:4000", {
@@ -34,18 +34,21 @@ window.addEventListener("click", (event) => {
         })
             .then(response => response.JSON())
             .then(response => {
-                if (response.loginAllowed) {
-                    console.log("Logined: " + true);
+                if (response.registerAllowed) {
+                    // console.log("Logined: " + true);
                     sessionStorage.setItem("logined", true);
+                    sessionStorage.setItem("userID", response.userID);
+                    sessionStorage.setItem("userName", response.userName);
+                    window.location.assign("http://localhost:3000/mainPage");
                 }
                 else {
-                    console.log("Logined: " + false);
+                    // console.log("Logined: " + false);
                     sessionStorage.setItem("logined", false);
-                    console.log("Reject reason: " + response.rejectReason);
+                    alert("Reject reason: " + response.rejectReason);
                 }
             })
             .catch(error => {
-                console.log("Logined: " + false);
+                // console.log("Logined: " + false);
                 sessionStorage.setItem("logined", false);
                 alert(error);
             })

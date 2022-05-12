@@ -18,11 +18,11 @@ window.addEventListener("click", (event) => {
     const target = event.target.closest(".login__submit-button");
     if (target) {
         event.preventDefault();
-        // console.log("Hello");
+
         const loginQueryObj = {
             query: "login",
-            email: document.body.querySelector("login__email-input"),
-            password: document.body.querySelector("login__password-input"),
+            email: document.body.querySelector("login__email-input").value,
+            password: document.body.querySelector("login__password-input").value,
         }
 
         fetch("http://localhost:4000", {
@@ -35,17 +35,20 @@ window.addEventListener("click", (event) => {
             .then(response => response.JSON())
             .then(response => {
                 if (response.loginAllowed) {
-                    console.log("Logined: " + true);
+                    // console.log("Logined: " + true);
                     sessionStorage.setItem("logined", true);
+                    sessionStorage.setItem("userID", response.userID);
+                    sessionStorage.setItem("userName", response.userName);
+                    window.location.assign("http://localhost:3000/mainPage");
                 }
                 else {
-                    console.log("Logined: " + false);
+                    // console.log("Logined: " + false);
                     sessionStorage.setItem("logined", false);
-                    console.log("Reject reason: " + response.rejectReason);
+                    alert("Reject reason: " + response.rejectReason);
                 }
             })
             .catch(error => {
-                console.log("Logined: " + false);
+                // console.log("Logined: " + false);
                 sessionStorage.setItem("logined", false);
                 alert(error);
             })

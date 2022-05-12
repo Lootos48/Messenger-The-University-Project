@@ -2,6 +2,10 @@ import { Link } from "react-router-dom";
 import css from "./StartingPage.module.css";
 
 const StartingPage = () => {
+    if (Boolean(sessionStorage.getItem("logined")) == true && window.location.href != "http://localhost:3000/mainPage") {
+        window.location.assign("http://localhost:3000/mainPage");
+    }
+
     return (
         <div className={css["starting-page"]}>
             <div className={css["starting-page__icon"]}><img src="./img/messenger-icon.svg" alt="icon" /></div>
