@@ -1,8 +1,10 @@
 using MessengerServer.DAL;
 using MessengerServer.Hubs;
+using MessengerServer.Util;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,6 +34,8 @@ namespace MessengerServer
             services.AddDbContext<MessengerDBContext>(options =>
                 options.UseSqlServer(connection)
             );
+
+            services.AddAutoMapper(typeof(MessengerMappingProfile));
 
             services.AddCors(options =>
             {

@@ -2,9 +2,8 @@
 
 namespace MessengerServer.DAL.Entities
 {
-    public class Message
+    public class Message : BaseEntity
     {
-        public int Id { get; set; }
         public DateTime SendTime { get; set; }
         public string Text { get; set; }
 

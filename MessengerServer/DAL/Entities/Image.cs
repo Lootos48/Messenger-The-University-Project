@@ -2,10 +2,8 @@
 
 namespace MessengerServer.DAL.Entities
 {
-    public class Image
+    public class Image : BaseEntity
     {
-        public int Id { get; set; }
-
         [Required]
         public string Path { get; set; }
 
