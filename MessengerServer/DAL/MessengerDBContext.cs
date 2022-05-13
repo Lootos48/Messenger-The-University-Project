@@ -12,6 +12,11 @@ namespace MessengerServer.DAL
 
         public DbSet<ChatsUsers> ChatsUsers { get; set; }
 
+        public MessengerDBContext()
+        {
+            Database.Migrate();
+        }
+
         public MessengerDBContext(DbContextOptions<MessengerDBContext> options)
             :base(options)
         {

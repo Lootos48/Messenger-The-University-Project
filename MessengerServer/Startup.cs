@@ -1,4 +1,5 @@
 using MessengerServer.DAL;
+using MessengerServer.Hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -31,6 +32,20 @@ namespace MessengerServer
             services.AddDbContext<MessengerDBContext>(options =>
                 options.UseSqlServer(connection)
             );
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder => builder
+                .WithOrigins("http://localhost:4200")
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
+            });
+
+            services.AddSignalR(hubOptions => { 
+                hubOptions.EnableDetailedErrors = true;
+            });
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,12 +58,12 @@ namespace MessengerServer
 
             app.UseRouting();
 
+            app.UseCors("CorsPolicy");
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllers();
+                endpoints.MapHub<MessengerServerHub>("/chat");
             });
         }
     }
