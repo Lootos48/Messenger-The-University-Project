@@ -14,13 +14,11 @@ namespace MessengerServer.DAL
 
         public MessengerDBContext()
         {
-            Database.Migrate();
         }
 
         public MessengerDBContext(DbContextOptions<MessengerDBContext> options)
             :base(options)
         {
-            Database.Migrate();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

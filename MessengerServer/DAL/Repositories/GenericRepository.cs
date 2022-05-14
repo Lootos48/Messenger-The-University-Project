@@ -30,7 +30,7 @@ namespace MessengerServer.DAL.Repositories
             return _context.SaveChangesAsync();
         }
 
-        public Task<T> FindAsync(int id)
+        public Task<T> FindByIdAsync(int id)
         {
             return _dbSet.FirstOrDefaultAsync(x => x.Id == id);
         }

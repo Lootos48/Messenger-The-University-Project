@@ -7,7 +7,7 @@ namespace MessengerServer.DAL.Repositories.Interfaces
     public interface IRepository<T> where T : BaseEntity
     {
         Task CreateAsync(T item);
-        Task<T> FindAsync(int id);
+        Task<T> FindByIdAsync(int id);
         Task<List<T>> GetAllAsync();
         Task DeleteAsync(T item);
         Task UpdateAsync(T item);

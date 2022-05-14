@@ -1,4 +1,6 @@
+using MessengerServer.BLL;
 using MessengerServer.DAL;
+using MessengerServer.DAL.Repositories;
 using MessengerServer.Hubs;
 using MessengerServer.Util;
 using Microsoft.AspNetCore.Builder;
@@ -34,6 +36,18 @@ namespace MessengerServer
             services.AddDbContext<MessengerDBContext>(options =>
                 options.UseSqlServer(connection)
             );
+            services.AddScoped<DbContext, MessengerDBContext>();
+
+            services.AddTransient<ChatRepository>();
+            services.AddTransient<MessageRepository>();
+            services.AddTransient<UserRepository>();
+            services.AddTransient<UserChatsRepository>();
+            services.AddTransient<UserPictureRepository>();
+            services.AddTransient<ImageRepository>();
+
+            services.AddTransient<ChatService>();
+            services.AddTransient<UserService>();
+
 
             services.AddAutoMapper(typeof(MessengerMappingProfile));
 
@@ -49,6 +63,7 @@ namespace MessengerServer
             services.AddSignalR(hubOptions => { 
                 hubOptions.EnableDetailedErrors = true;
             });
+
             services.AddControllers();
         }
 
