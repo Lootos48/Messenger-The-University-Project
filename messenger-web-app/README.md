@@ -74,14 +74,12 @@ query: "login"
 -----------------------
 input: 
 
-    email - string
+    userName - string
     password - string
 -----------------------
 requestedData:
 
-    loginAllowed - boolean
     userID - string
-    userName - string
     rejectReason - string
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 ////////////////////////////////////////
@@ -89,14 +87,12 @@ query: "register"
 -----------------------
 input: 
 
-    email - string
+    userName - string
     password - string
 -----------------------
 requestedData:
 
-    registerAllowed - boolean
     userID - string
-    userName - string
     rejectReason - string
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 ////////////////////////////////////////
@@ -108,9 +104,10 @@ input:
 -----------------------
 requestedData:
 
-    userChats - array | List of user chats at left satisfied
+    userChats - array | List of user chats at left side
     [
         { - object
+            chatID - string
             chatName - string
             chatIcon - image (if NULL then chat has default image)
             lastMessage - string (if it's image then expecting string "Image") (if it's text with image then expecting only text)
@@ -119,3 +116,25 @@ requestedData:
         {...},
     ]
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+////////////////////////////////////////
+query: "messageHistory"
+---------------------
+input:
+
+    chatID - string
+---------------------
+requestedData:
+    
+    messages - array
+    [
+        { - object
+            text - string 
+            image - image (sended image)
+            senderName - string
+            senderLogo - image (sender avatar)
+            date - string | date-format: "DD.MM.YY HH:MM"
+        },
+        {...}, !! Messages from older to newer !!
+    ]
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+////////////////////////////////////////
