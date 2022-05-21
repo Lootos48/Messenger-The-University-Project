@@ -1,0 +1,256 @@
+.main-page {
+    display: flex;
+    display: grid;
+    grid-template-columns: 1.5fr 3fr;
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+.chats {
+    display: flex;
+    flex-flow: column nowrap;
+    overflow-y: auto;
+}
+
+.chats__header {
+    background-color: gray;
+    display: flex;
+    align-items: center;
+    padding: 2vw;
+    border-right: 2px solid white;
+    height: 6rem;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.chats__exit-link {
+    margin-right: 1vw;    
+}
+
+.chats__list {
+    display: grid;
+    grid-auto-flow: row;
+    align-content: start;
+    border-right: 2px solid black;
+    flex-grow: 1;
+}
+
+.chat {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    border-bottom: 2px solid black;
+    grid-template-areas: 
+    "chatIcon chatName dateLastMessage"
+    "chatIcon lastMessage lastMessage";
+    height: 6rem;
+    padding: 1vw 2vw;
+    justify-items: start;
+}
+
+.chat:hover,
+.chat:focus {
+    background-color: lightgray;
+}
+
+.chat:active {
+    background-color: gray;
+}
+
+.chat__icon {
+    width: 50px;
+    grid-area: chatIcon;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: lightgray;
+}
+
+.chat__icon img {
+    width: fit-content;
+}
+
+.chat__chat-name {
+    grid-area: chatName;
+    font-weight: 700;
+}
+
+.chat__last-message {
+    grid-area: lastMessage;
+    margin-top: 1vw;
+}
+
+.chat__date-last-message {
+    grid-area: dateLastMessage;
+}
+
+.messages {
+    /* display: flex;
+    flex-flow: column nowrap; */
+    /* flex-grow: auto 1 auto; */
+    
+    overflow-y: auto;
+    /* overscroll-behavior: contain; */
+}
+
+.messages__header {
+    background-color: gray;
+    align-items: center;
+    padding: 0 2vw;
+    border-right: 2px solid white;
+    height: 6rem;
+    display: grid;
+    grid-template-columns: min-content auto auto;
+    /* justify-content: start; */
+    align-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.messages__chat-icon {
+    width: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: lightgray;
+}
+
+.messages__chat-icon img {
+    width: fit-content;
+}
+
+.messages__chat-name {
+    justify-self: start;
+    margin-left: 2vw;
+    font-weight: 700;
+}
+
+.messages__dots {
+    width: 40px;
+    background-color: transparent;
+    justify-self: end;
+}
+
+.messages__dots img {
+    width: 100%;
+}
+
+.messages__list {
+    /* height: 80vh; */
+    /* position: relative; */
+}
+
+.message {
+    display: grid;
+    grid-template-areas:
+    "senderIcon main";
+    justify-content: start;
+    margin: 1.5vw;
+    column-gap: 0.5vw;
+}
+
+.message > * {
+    /* border: 2px solid black; */
+}
+
+.message__icon {
+    width: 50px;
+    grid-area: chatIcon;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: lightgray;
+    grid-area: senderIcon;
+    align-self: start;
+}
+
+.message__icon img {
+    width: 100%;
+}
+
+.message__main {
+    grid-area: main;
+    background-color: lightgray;
+    display: grid;
+    grid-template-areas: 
+    "senderName"
+    "textContent"
+    "image"
+    "date";
+    row-gap: 0.5vw;
+    padding: 1vw;
+    border-radius: 5px 20px 20px 20px
+}
+
+.message__sender-name {
+    grid-area: senderName;
+    font-weight: 700;
+}
+
+.message__text {
+    grid-area: textContent;
+}
+
+.message__image {
+    grid-area: image;
+    max-width: 20vw;
+}
+
+.message__image > img {
+    width: 100%;
+}
+
+.message__date {
+    grid-area: date;
+    justify-self: end;
+}
+
+.input {
+    display: grid;
+    grid-template-columns: 1fr 20fr 1fr;
+    
+    position: sticky;
+    bottom: 0;
+    right: 0;
+    background-color: white;
+    border-top: 2px solid black;
+
+}
+
+.input > * {
+}
+
+.input__attach {
+    padding: 0.2vw;
+}
+
+.input__attach:hover,
+.input__attach:focus {
+    background-color: lightgray;
+}
+
+.input__attach:active {
+    background-color: gray;
+}
+
+.input__text {
+    padding: 0.5vw;
+    height: auto;
+    resize: none;
+}
+
+.input__send {
+    padding: 0.2vw;
+    background-color: transparent;
+}
+
+.input__send:hover,
+.input__send:focus {
+    background-color: lightgray;
+}
+
+.input__send:active {
+    background-color: gray;
+}
+
+._hidden {
+    display: none;
+}

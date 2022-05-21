@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import css from "./StartingPage.module.css";
 
 const StartingPage = () => {
-    if (Boolean(sessionStorage.getItem("logined")) == true && window.location.href != "http://localhost:3000/mainPage") {
+    if (sessionStorage.getItem("userID") != null) {
         window.location.assign("http://localhost:3000/mainPage");
     }
 
