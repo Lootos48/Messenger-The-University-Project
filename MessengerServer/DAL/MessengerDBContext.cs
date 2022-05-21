@@ -14,6 +14,7 @@ namespace MessengerServer.DAL
 
         public MessengerDBContext()
         {
+            Database.Migrate();
         }
 
         public MessengerDBContext(DbContextOptions<MessengerDBContext> options)
@@ -26,6 +27,10 @@ namespace MessengerServer.DAL
             // обозначаем первичные ключи в таблицах
             modelBuilder.Entity<User>()
                 .HasKey(x => x.Id);
+
+            /*modelBuilder.Entity<User>()
+                .HasIndex(x => x.Username)
+                .IsUnique();*/
 
             modelBuilder.Entity<Chat>()
                 .HasKey(x => x.Id);
