@@ -19,17 +19,18 @@ const Login = () => {
 }
 
 window.addEventListener("click", (event) => {
-    const target = event.target.closest(".login__submit-button");
+    const target = event.target.closest("." + css["login__submit-button"]);
     if (target) {
         event.preventDefault();
-
+        // let test = document.body.querySelector("#login__user-name-input").value;
+        debugger;
         const loginQueryObj = {
             query: "login",
-            email: document.body.querySelector("login__user-name-input").value,
-            password: document.body.querySelector("login__password-input").value,
+            email: document.body.querySelector("#login__user-name-input").value,
+            password: document.body.querySelector("#login__password-input").value,
         }
 
-        fetch("http://localhost:4000", {
+        fetch("http://localhost:4000/api/users/login", {
             method: "post",
             body: JSON.stringify(loginQueryObj),
             headers: {

@@ -79,7 +79,7 @@ input:
 -----------------------
 requestedData:
 
-    userID - string
+    userID - number
     rejectReason - string
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 ////////////////////////////////////////
@@ -92,7 +92,7 @@ input:
 -----------------------
 requestedData:
 
-    userID - string
+    userID - number
     rejectReason - string
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 ////////////////////////////////////////
@@ -107,7 +107,7 @@ requestedData:
     userChats - array | List of user chats at left side
     [
         { - object
-            chatID - string
+            chatID - number
             chatName - string
             chatIcon - image (if NULL then chat has default image)
             lastMessage - string (if it's image then expecting string "Image") (if it's text with image then expecting only text)
@@ -128,6 +128,7 @@ requestedData:
     messages - array
     [
         { - object
+            messageID - number
             text - string 
             image - image (sended image)
             senderName - string

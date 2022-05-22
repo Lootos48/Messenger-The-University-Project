@@ -24,78 +24,17 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 //     dateLastMessage: "08.02.21 13:24",
 //   },
 //   {
-//     chatID: "23",
-//     chatName: "Grew",
+//     chatID: "85",
+//     chatName: "Andrew",
 //     chatIcon: "./img/profile-icon.svg",
-//     lastMessage: "What are you watching at?",
-//     dateLastMessage: "01.01.22 13:45",
-//   },
-//   {
-//     chatID: "38",
-//     chatName: "Max",
-//     chatIcon: "./img/profile-icon.svg",
-//     lastMessage: "Hey!",
-//     dateLastMessage: "08.02.21 13:24",
-//   },
-//   {
-//     chatID: "23",
-//     chatName: "Grew",
-//     chatIcon: "./img/profile-icon.svg",
-//     lastMessage: "What are you watching at?",
-//     dateLastMessage: "01.01.22 13:45",
-//   },
-//   {
-//     chatID: "38",
-//     chatName: "Max",
-//     chatIcon: "./img/profile-icon.svg",
-//     lastMessage: "Hey!",
-//     dateLastMessage: "08.02.21 13:24",
-//   },
-//   {
-//     chatID: "23",
-//     chatName: "Grew",
-//     chatIcon: "./img/profile-icon.svg",
-//     lastMessage: "What are you watching at?",
-//     dateLastMessage: "01.01.22 13:45",
-//   },
-//   {
-//     chatID: "38",
-//     chatName: "Max",
-//     chatIcon: "./img/profile-icon.svg",
-//     lastMessage: "Hey!",
-//     dateLastMessage: "08.02.21 13:24",
-//   },
-//   {
-//     chatID: "23",
-//     chatName: "Grew",
-//     chatIcon: "./img/profile-icon.svg",
-//     lastMessage: "What are you watching at?",
-//     dateLastMessage: "01.01.22 13:45",
-//   },
-//   {
-//     chatID: "38",
-//     chatName: "Max",
-//     chatIcon: "./img/profile-icon.svg",
-//     lastMessage: "Hey!",
-//     dateLastMessage: "08.02.21 13:24",
-//   },
-//   {
-//     chatID: "23",
-//     chatName: "Grew",
-//     chatIcon: "./img/profile-icon.svg",
-//     lastMessage: "What are you watching at?",
-//     dateLastMessage: "01.01.22 13:45",
-//   },
-//   {
-//     chatID: "38",
-//     chatName: "Max",
-//     chatIcon: "./img/profile-icon.svg",
-//     lastMessage: "Hey!",
-//     dateLastMessage: "08.02.21 13:24",
+//     lastMessage: "Hmm...",
+//     dateLastMessage: "01.05.22 10:45",
 //   },
 // ]));
+
 // sessionStorage.setItem("messageHistory", JSON.stringify([
 //   {
+//     messageID: 1,
 //     text: "Hello",
 //     image: "",
 //     senderName: "Grew",
@@ -103,6 +42,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 //     date: "01.01.22 12:45",
 //   },
 //   {
+//     messageID: 2,
 //     text: "What are you watching at?",
 //     image: "./img/lookingAttentively.png",
 //     senderName: "Grew",
@@ -110,6 +50,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 //     date: "01.01.22 13:45",
 //   },
 //   {
+//     messageID: 3,
 //     text: "Hello",
 //     image: "",
 //     senderName: "Grew",
@@ -117,6 +58,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 //     date: "01.01.22 12:45",
 //   },
 //   {
+//     messageID: 4,
 //     text: "What are you watching at?",
 //     image: "./img/lookingAttentively.png",
 //     senderName: "Grew",
@@ -124,6 +66,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 //     date: "01.01.22 13:45",
 //   },
 //   {
+//     messageID: 5,
 //     text: "Hello",
 //     image: "",
 //     senderName: "Grew",
@@ -131,6 +74,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 //     date: "01.01.22 12:45",
 //   },
 //   {
+//     messageID: 6,
 //     text: "What are you watching at?",
 //     image: "./img/lookingAttentively.png",
 //     senderName: "Grew",
@@ -138,6 +82,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 //     date: "01.01.22 13:45",
 //   },
 //   {
+//     messageID: 7,
 //     text: "Hello",
 //     image: "",
 //     senderName: "Grew",
@@ -145,6 +90,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 //     date: "01.01.22 12:45",
 //   },
 //   {
+//     messageID: 8,
 //     text: "What are you watching at?",
 //     image: "./img/lookingAttentively.png",
 //     senderName: "Grew",
@@ -152,6 +98,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 //     date: "01.01.22 13:45",
 //   },
 //   {
+//     messageID: 9,
 //     text: "Hello",
 //     image: "",
 //     senderName: "Grew",
@@ -159,20 +106,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 //     date: "01.01.22 12:45",
 //   },
 //   {
-//     text: "What are you watching at?",
-//     image: "./img/lookingAttentively.png",
-//     senderName: "Grew",
-//     senderLogo: "./img/profile-icon.svg",
-//     date: "01.01.22 13:45",
-//   },
-//   {
-//     text: "Hello",
-//     image: "",
-//     senderName: "Grew",
-//     senderLogo: "./img/profile-icon.svg",
-//     date: "01.01.22 12:45",
-//   },
-//   {
+//     messageID: 10,
 //     text: "What are you watching at?",
 //     image: "./img/lookingAttentively.png",
 //     senderName: "Grew",
