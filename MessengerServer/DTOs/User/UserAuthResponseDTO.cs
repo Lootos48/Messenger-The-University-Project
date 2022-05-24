@@ -2,7 +2,7 @@
 {
     public class UserAuthResponseDTO
     {
-        public string userID { get; set; }
+        public int userID { get; set; }
         public string rejectReason { get; set; }
     }
 }

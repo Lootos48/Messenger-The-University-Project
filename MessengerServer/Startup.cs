@@ -46,8 +46,10 @@ namespace MessengerServer
             services.AddTransient<UserPictureRepository>();
             services.AddTransient<ImageRepository>();
 
-            services.AddTransient<ChatService>();
+            services.AddTransient<ChatsService>();
             services.AddTransient<UserService>();
+            services.AddTransient<UsersChatsService>();
+            services.AddTransient<MessagesService>();
 
 
             services.AddAutoMapper(typeof(MessengerMappingProfile));

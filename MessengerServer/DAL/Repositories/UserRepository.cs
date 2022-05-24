@@ -11,19 +11,24 @@ namespace MessengerServer.DAL.Repositories
         {
         }
 
-        public Task<User> FindUserByUserNameAsync(string name)
-        {
-            return _dbSet.FirstOrDefaultAsync(x => x.Username == name);
-        }
-
-        public Task<User> FindUserWithIncludesAsync(string userId)
+        public Task<User> FindByUserNameAsync(string name)
         {
             return _dbSet
                 .Include(x => x.Avatar)
                 .Include(x => x.Chats)
                     .ThenInclude(x => x.Chat)
                 .Include(x => x.Messages)
-                .FirstOrDefaultAsync(x => x.Id == int.Parse(userId));
+                .FirstOrDefaultAsync(x => x.Username == name);
+        }
+
+        public override Task<User> FindByIdAsync(int id)
+        {
+            return _dbSet
+                .Include(x => x.Avatar)
+                .Include(x => x.Chats)
+                    .ThenInclude(x => x.Chat)
+                .Include(x => x.Messages)
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
     }
 }

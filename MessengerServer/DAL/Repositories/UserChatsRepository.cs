@@ -17,20 +17,35 @@ namespace MessengerServer.DAL.Repositories
             _dbSet = context.Set<ChatsUsers>();
         }
 
-        public Task<List<ChatsUsers>> GetUserChats(string userID)
+        public Task<List<ChatsUsers>> GetUserChats(int userID)
         {
             return _dbSet
                 .Include(x => x.Chat)
-                .Where(x => x.UserId == int.Parse(userID))
+                    .ThenInclude(x => x.Messages)
+                .Where(x => x.UserId == userID)
                 .ToListAsync();
         }
 
-        public Task<List<ChatsUsers>> GetChatUsers(string chatID)
+        public Task<List<ChatsUsers>> GetChatUsers(int chatID)
         {
             return _dbSet
                 .Include(x => x.User)
-                .Where(x => x.ChatId == int.Parse(chatID))
+                .Where(x => x.ChatId == chatID)
                 .ToListAsync();
+        }
+
+        public Task AddUserToChat(ChatsUsers chatsUsers)
+        {
+            _dbSet.Add(chatsUsers);
+
+            return _context.SaveChangesAsync();
+        }
+
+        public Task RemoveUserFromChat(ChatsUsers chatsUsers)
+        {
+            _dbSet.Remove(chatsUsers);
+
+            return _context.SaveChangesAsync();
         }
     }
 }
