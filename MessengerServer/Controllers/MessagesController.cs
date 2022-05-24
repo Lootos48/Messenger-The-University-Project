@@ -3,7 +3,6 @@ using MessengerServer.BLL;
 using MessengerServer.DAL;
 using MessengerServer.DAL.Entities;
 using MessengerServer.DTOs.Message;
-using MessengerServer.Hubs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using System.Collections.Generic;

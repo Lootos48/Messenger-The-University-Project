@@ -5,7 +5,6 @@ using MessengerServer.DAL.Entities;
 using MessengerServer.DAL.Repositories;
 using MessengerServer.DTOs;
 using MessengerServer.Exceptions;
-using MessengerServer.Hubs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
@@ -86,9 +85,10 @@ namespace MessengerServer.Controllers
         }
 
         [HttpGet("{userId:int}/chats")]
-        public async Task<IActionResult> GetUserChats()
+        public async Task<IActionResult> GetUserChats(int userId)
         {
-
+            var chats = await _usersChatsService.GetUserChatsAsync(userId);
+            return Ok(chats);
         }
 
         [HttpPost("edit")]

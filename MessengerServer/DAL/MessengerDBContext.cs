@@ -14,7 +14,7 @@ namespace MessengerServer.DAL
 
         public MessengerDBContext()
         {
-            Database.Migrate();
+            Database.EnsureCreated();
         }
 
         public MessengerDBContext(DbContextOptions<MessengerDBContext> options)
@@ -28,9 +28,9 @@ namespace MessengerServer.DAL
             modelBuilder.Entity<User>()
                 .HasKey(x => x.Id);
 
-            /*modelBuilder.Entity<User>()
+            modelBuilder.Entity<User>()
                 .HasIndex(x => x.Username)
-                .IsUnique();*/
+                .IsUnique();
 
             modelBuilder.Entity<Chat>()
                 .HasKey(x => x.Id);

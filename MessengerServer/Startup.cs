@@ -1,7 +1,6 @@
 using MessengerServer.BLL;
 using MessengerServer.DAL;
 using MessengerServer.DAL.Repositories;
-using MessengerServer.Hubs;
 using MessengerServer.Util;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -89,7 +88,6 @@ namespace MessengerServer
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHub<MessengerServerHub>("/chat");
             });
         }
     }
