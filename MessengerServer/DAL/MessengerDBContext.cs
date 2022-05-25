@@ -33,6 +33,10 @@ namespace MessengerServer.DAL
                 .IsUnique();
 
             modelBuilder.Entity<Chat>()
+                .HasIndex(x => x.Title)
+                .IsUnique();
+
+            modelBuilder.Entity<Chat>()
                 .HasKey(x => x.Id);
 
             modelBuilder.Entity<Message>()

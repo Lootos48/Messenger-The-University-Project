@@ -34,8 +34,9 @@ namespace MessengerServer
             string connection = Configuration.GetConnectionString("MSLocalDBConnection");
 
             services.AddDbContext<MessengerDBContext>(options =>
-                options.UseSqlServer(connection)
-            );
+            {
+                options.UseSqlServer(connection);
+            });
             services.AddScoped<DbContext, MessengerDBContext>();
 
             services.AddTransient<ChatRepository>();

@@ -4,14 +4,16 @@ using MessengerServer.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MessengerServer.Migrations
 {
     [DbContext(typeof(MessengerDBContext))]
-    partial class MessengerDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220525133150_Add Unique constraint to Chat title")]
+    partial class AddUniqueconstrainttoChattitle
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
