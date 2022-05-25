@@ -45,9 +45,15 @@ namespace MessengerServer.BLL
             return chat;
         }
 
-        public Task CreateChatAsync(Chat chat)
+        public async Task CreateChatAsync(Chat chat)
         {
-            return _chatRepository.CreateAsync(chat);
+            Chat existChat = await _chatRepository.FindByNameAsync(chat.Title);
+            if (existChat != null)
+            {
+                throw new NotUniqueException("Chat with this title is already exist");
+            }
+
+            await _chatRepository.CreateAsync(chat);
         }
 
         public async Task EditChatAsync(Chat request)

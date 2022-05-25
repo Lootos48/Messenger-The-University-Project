@@ -104,16 +104,24 @@ namespace MessengerServer.Controllers
                 return BadRequest();
             }
 
-            Chat chat = _mapper.Map<Chat>(request);
-            await _chatService.CreateChatAsync(chat);
+            try
+            {
+                Chat chatToCreate = _mapper.Map<Chat>(request);
+                await _chatService.CreateChatAsync(chatToCreate);
 
-            chat = await _chatService.GetChatByTitleAsync(chat.Title);
+            }
+            catch (NotUniqueException ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
 
-            await _usersChatService.AddUserToChatAsync(new ChatsUsers 
-                { 
-                    ChatId = chat.Id, 
-                    UserId = request.CreatorId 
-                });
+            Chat chat = await _chatService.GetChatByTitleAsync(request.Title);
+
+            await _usersChatService.AddUserToChatAsync(new ChatsUsers
+            {
+                ChatId = chat.Id,
+                UserId = request.CreatorId
+            });
 
             return Ok(new { chatId = chat.Id });
         }

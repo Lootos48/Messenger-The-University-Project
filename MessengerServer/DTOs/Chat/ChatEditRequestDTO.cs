@@ -7,6 +7,7 @@ namespace MessengerServer.DTOs.Chat
         [Required]
         public int Id { get; set; }
 
+        [Required]
         [StringLength(100, ErrorMessage = "Max title length is 100 characters")]
         public string Title { get; set; }
     }
