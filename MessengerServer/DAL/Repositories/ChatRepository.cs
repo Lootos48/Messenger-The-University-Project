@@ -21,12 +21,21 @@ namespace MessengerServer.DAL.Repositories
                     .ThenInclude(x => x.Sender)
                         .ThenInclude(x => x.Avatar)
                 .Include(x => x.Users)
+                    .ThenInclude(x => x.User)
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public Task<Chat> FindByNameAsync(string chatTitle)
         {
-            return _dbSet.FirstOrDefaultAsync(x => x.Title == chatTitle);
+            return _dbSet
+                .Include(x => x.Messages)
+                    .ThenInclude(x => x.Picture)
+                .Include(x => x.Messages)
+                    .ThenInclude(x => x.Sender)
+                        .ThenInclude(x => x.Avatar)
+                .Include(x => x.Users)
+                    .ThenInclude(x => x.User)
+                .FirstOrDefaultAsync(x => x.Title == chatTitle);
         }
     }
 }

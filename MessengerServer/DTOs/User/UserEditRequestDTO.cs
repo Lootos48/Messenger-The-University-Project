@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MessengerServer.DTOs
+namespace MessengerServer.DTOs.User
 {
     public class UserEditRequestDTO
     {

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MessengerServer.DAL.Entities;
 using MessengerServer.DAL.Repositories;
-using MessengerServer.DTOs;
+using MessengerServer.DTOs.User;
 using MessengerServer.Exceptions;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,19 +27,19 @@ namespace MessengerServer.BLL
         /// </summary>
         /// <param name="registerUserRequest"></param>
         /// <returns></returns>
-        public async Task<UserAuthResponseDTO> RegisterAsync(UserRegisterRequestDTO registerUserRequest)
+        public async Task<User> RegisterAsync(UserRegisterRequestDTO registerUserRequest)
         {
-            User user = _mapper.Map<User>(registerUserRequest);
-            if (_userRepository.FindByUserNameAsync(registerUserRequest.username) != null)
+            User user = await _userRepository.FindByUserNameAsync(registerUserRequest.username);
+            if (user != null)
             {
-                return new UserAuthResponseDTO { rejectReason = "User with that credentials is already exist" };
+                throw new NotUniqueException("User with that username is already exist");
             }
 
+            user = _mapper.Map<User>(registerUserRequest);
             await _userRepository.CreateAsync(user);
-            user = await _userRepository.FindByUserNameAsync(registerUserRequest.username);
 
-            UserAuthResponseDTO response = _mapper.Map<UserAuthResponseDTO>(user);
-            return response;
+            user = await _userRepository.FindByUserNameAsync(registerUserRequest.username);
+            return user;
         }
 
         /// <summary>
@@ -47,10 +47,16 @@ namespace MessengerServer.BLL
         /// </summary>
         /// <param name="loginUserRequest"></param>
         /// <returns></returns>
-        public async Task<UserAuthResponseDTO> LoginAsync(UserAuthRequestDTO loginUserRequest)
+        public async Task<User> LoginAsync(UserAuthRequestDTO loginUserRequest)
         {
             User user = await _userRepository.FindByUserNameAsync(loginUserRequest.username);
-            return BuildAuthResponse(loginUserRequest, user);
+            if (user is null)
+            {
+                throw new NotFoundException("User with that credentials wasn`t found");
+            }
+
+            return user;
+            /*return BuildAuthResponse(loginUserRequest, user);*/
         }
 
         /// <summary>
@@ -91,14 +97,15 @@ namespace MessengerServer.BLL
         public async Task EditAsync(UserEditRequestDTO request)
         {
             User user = await _userRepository.FindByUserNameAsync(request.Username);
-            if (user.Id != request.Id)
+            if (user != null && user.Id != request.Id)
             {
-                throw new ParametersValidationException("User with that username is already exist");
+                throw new NotUniqueException("User with that username is already exist");
             }
 
-            User userToUpdate = _mapper.Map<User>(request);
+            user.Username = request.Username;
+            user.Password = request.Password;
 
-            await _userRepository.UpdateAsync(userToUpdate);
+            await _userRepository.UpdateAsync(user);
         }
 
         public async Task DeleteAsync(int userId)
@@ -125,13 +132,9 @@ namespace MessengerServer.BLL
         private static UserAuthResponseDTO BuildAuthResponse(UserAuthRequestDTO loginUserRequest, User user)
         {
             UserAuthResponseDTO response = new UserAuthResponseDTO();
-            if (user is null)
+            if (user is null || user.Password != loginUserRequest.password)
             {
-                response.rejectReason = "User with that credentials wasn`t found";
-            }
-            else if (user.Password != loginUserRequest.password)
-            {
-                response.rejectReason = "User with that credentials wasn`t found";
+                throw new NotFoundException("User with that credentials wasn`t found");
             }
             else
             {

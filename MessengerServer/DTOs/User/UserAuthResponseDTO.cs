@@ -1,4 +1,4 @@
-﻿namespace MessengerServer.DTOs
+﻿namespace MessengerServer.DTOs.User
 {
     public class UserAuthResponseDTO
     {

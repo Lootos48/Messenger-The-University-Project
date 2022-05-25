@@ -4,6 +4,8 @@ using MessengerServer.DTOs;
 using MessengerServer.DTOs.Chat;
 using MessengerServer.DTOs.ChatsUsers;
 using MessengerServer.DTOs.Message;
+using MessengerServer.DTOs.User;
+using System.Linq;
 
 namespace MessengerServer.Util
 {
@@ -35,13 +37,13 @@ namespace MessengerServer.Util
                 .ForMember(entity => entity.Password,
                     cfg => cfg.MapFrom(dto => dto.Password))
                 .ForMember(entity => entity.Avatar,
-                    cfg => cfg.Ignore())
+                    cfg => cfg.UseDestinationValue())
                 .ForMember(entity => entity.Messages,
-                    cfg => cfg.Ignore())
+                    cfg => cfg.UseDestinationValue())
                 .ForMember(entity => entity.Chats,
-                    cfg => cfg.Ignore())
+                    cfg => cfg.UseDestinationValue())
                 .ForMember(entity => entity.UserPictureId,
-                    cfg => cfg.Ignore());
+                    cfg => cfg.UseDestinationValue());
 
             CreateMap<User, UserAuthResponseDTO>()
                 .ForMember(entity => entity.userID,
@@ -80,8 +82,6 @@ namespace MessengerServer.Util
                     cfg => cfg.MapFrom(dto => dto.Id))
                 .ForMember(entity => entity.Title,
                     cfg => cfg.MapFrom(dto => dto.Title))
-                .ForMember(entity => entity.Id,
-                    cfg => cfg.Ignore())
                 .ForMember(entity => entity.Users,
                     cfg => cfg.Ignore())
                 .ForMember(entity => entity.Messages,
@@ -93,9 +93,29 @@ namespace MessengerServer.Util
                 .ForMember(entity => entity.User,
                     cfg => cfg.Ignore());
 
-            CreateMap<Message, MessageDTO>();
+            CreateMap<Message, MessageDTO>()
+                .ForMember(dto => dto.Image,
+                    cfg => cfg.Ignore());
 
-            CreateMap<MessageDTO, Message>();
+            CreateMap<CreateMessageRequestDTO, Message>()
+                .ForMember(entity => entity.ChatId,
+                    cfg => cfg.MapFrom(dto => dto.ChatId))
+                .ForMember(entity => entity.UserId,
+                    cfg => cfg.MapFrom(dto => dto.UserId))
+                .ForMember(entity => entity.Text,
+                    cfg => cfg.MapFrom(dto => dto.Text))
+                .ForMember(entity => entity.Picture,
+                    cfg => cfg.Ignore());
+
+            CreateMap<User, UserDTO>()
+                .ForMember(dto => dto.Avatar,
+                    cfg => cfg.Ignore())
+                .ForMember(dto => dto.Chats,
+                    cfg => cfg.MapFrom(entity => entity.Chats.Select(x => x.Chat).ToList()));
+
+            CreateMap<Chat, ChatDTO>()
+                .ForMember(dto => dto.Users,
+                    cfg => cfg.MapFrom(entity => entity.Users.Select(x => x.User).ToList()));
         }
     }
 }

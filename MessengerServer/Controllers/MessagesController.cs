@@ -2,13 +2,12 @@
 using MessengerServer.BLL;
 using MessengerServer.DAL;
 using MessengerServer.DAL.Entities;
+using MessengerServer.DTOs;
 using MessengerServer.DTOs.Message;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace MessengerServer.Controllers
 {
@@ -50,6 +49,13 @@ namespace MessengerServer.Controllers
             Message message = _mapper.Map<Message>(request);
             await _messagesService.EditMessage(message);
 
+            return Ok();
+        }
+
+        [HttpPost("delete")]
+        public async Task<IActionResult> Delete(int messageId)
+        {
+            await _messagesService.DeleteMessage(messageId);
             return Ok();
         }
     }

@@ -3,6 +3,7 @@ using MessengerServer.BLL;
 using MessengerServer.DAL;
 using MessengerServer.DAL.Entities;
 using MessengerServer.DAL.Repositories;
+using MessengerServer.DTOs;
 using MessengerServer.DTOs.Chat;
 using MessengerServer.DTOs.ChatsUsers;
 using MessengerServer.Exceptions;
@@ -38,21 +39,24 @@ namespace MessengerServer.Controllers
         public async Task<IActionResult> GetChats()
         {
             var chats = await _chatService.GetAllChatsAsync();
-            return Ok(chats);
+
+            var chatsDTO = _mapper.Map<List<ChatDTO>>(chats);
+            return Ok(chatsDTO);
         }
 
         [HttpGet("{chatId:int}")]
-        public async Task<IActionResult> GetChat([FromBody] int chatId)
+        public async Task<IActionResult> GetChat(int chatId)
         {
             try
             {
                 var chat = await _chatService.GetChatByIdAsync(chatId);
 
-                return Ok(chat);
+                var chatDTO = _mapper.Map<ChatDTO>(chat);
+                return Ok(chatDTO);
             }
             catch (NotFoundException ex)
             {
-                return NotFound(ex.Message);
+                return NotFound(new { error = ex.Message });
             }
         }
 
@@ -60,14 +64,18 @@ namespace MessengerServer.Controllers
         public async Task<IActionResult> GetChatUsers(int chatId)
         {
             var users = await _usersChatService.GetChatUsersAsync(chatId);
-            return Ok(users);
+
+            var usersDTO = _mapper.Map<List<UserDTO>>(users);
+            return Ok(usersDTO);
         }
 
         [HttpGet("{chatId:int}/messages")]
         public async Task<IActionResult> GetChatMessages(int chatId)
         {
             var messages = await _messagesService.GetChatMessages(chatId);
-            return Ok(messages);
+
+            var messagesDTO = _mapper.Map<List<MessageDTO>>(messages);
+            return Ok(messagesDTO);
         }
 
         [HttpPost("add-user")]
@@ -99,7 +107,15 @@ namespace MessengerServer.Controllers
             Chat chat = _mapper.Map<Chat>(request);
             await _chatService.CreateChatAsync(chat);
 
-            return Ok();
+            chat = await _chatService.GetChatByTitleAsync(chat.Title);
+
+            await _usersChatService.AddUserToChatAsync(new ChatsUsers 
+                { 
+                    ChatId = chat.Id, 
+                    UserId = request.CreatorId 
+                });
+
+            return Ok(new { chatId = chat.Id });
         }
 
         [HttpPost("edit")]
@@ -117,9 +133,8 @@ namespace MessengerServer.Controllers
         }
 
         [HttpPost("delete")]
-        public async Task<IActionResult> Delete([FromBody] int chatId)
+        public async Task<IActionResult> Delete(int chatId)
         {
-
             try
             {
                 await _chatService.DeleteChatAsync(chatId);
@@ -128,7 +143,7 @@ namespace MessengerServer.Controllers
             }
             catch (NotFoundException ex)
             {
-                return NotFound(ex.Message);
+                return NotFound(new { error = ex.Message });
             }
         }
     }

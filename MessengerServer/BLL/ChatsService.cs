@@ -23,6 +23,17 @@ namespace MessengerServer.BLL
             return _chatRepository.GetAllAsync();
         }
 
+        public async Task<Chat> GetChatByTitleAsync(string title)
+        {
+            var chat = await _chatRepository.FindByNameAsync(title);
+            if (chat is null)
+            {
+                throw new NotFoundException("Chat not found");
+            }
+
+            return chat;
+        }
+
         public async Task<Chat> GetChatByIdAsync(int chatId)
         {
             var chat = await _chatRepository.FindByIdAsync(chatId);
@@ -39,9 +50,17 @@ namespace MessengerServer.BLL
             return _chatRepository.CreateAsync(chat);
         }
 
-        public Task EditChatAsync(Chat chat)
+        public async Task EditChatAsync(Chat request)
         {
-            return _chatRepository.UpdateAsync(chat);
+            Chat chat = await _chatRepository.FindByIdAsync(request.Id);
+            if (chat is null)
+            {
+                throw new NotFoundException("Chat not found");
+            }
+
+            chat.Title = request.Title;
+
+            await _chatRepository.UpdateAsync(chat);
         }
 
         public async Task DeleteChatAsync(int chatId)

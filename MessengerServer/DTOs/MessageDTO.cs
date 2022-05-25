@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MessengerServer.DTOs.Message
+namespace MessengerServer.DTOs
 {
     public class MessageDTO
     {
