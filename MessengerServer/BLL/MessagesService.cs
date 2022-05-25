@@ -45,9 +45,15 @@ namespace MessengerServer.BLL
             return chat.Messages.OrderBy(x => x.SendTime).ToList();
         }
 
-        public Task<Message> GetMessageById(int messageId)
+        public async Task<Message> GetMessageById(int messageId)
         {
-            return _messageRepository.FindByIdAsync(messageId);
+            Message message = await _messageRepository.FindByIdAsync(messageId);
+            if (message is null)
+            {
+                throw new NotFoundException("Message was not found");
+            }
+
+            return message;
         }
 
         public Task CreateMessage(Message message)
@@ -56,9 +62,17 @@ namespace MessengerServer.BLL
             return _messageRepository.CreateAsync(message);
         }
 
-        public Task EditMessage(Message message)
+        public async Task EditMessage(Message request)
         {
-            return _messageRepository.UpdateAsync(message);
+            Message message = await _messageRepository.FindByIdAsync(request.Id);
+            if (message is null)
+            {
+                throw new NotFoundException("Message not found");
+            }
+
+            message.Text = request.Text;
+
+            await _messageRepository.UpdateAsync(message);
         }
 
         public async Task DeleteMessage(int messageId)

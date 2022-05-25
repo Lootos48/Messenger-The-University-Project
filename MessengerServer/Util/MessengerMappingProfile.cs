@@ -94,8 +94,14 @@ namespace MessengerServer.Util
                     cfg => cfg.Ignore());
 
             CreateMap<Message, MessageDTO>()
+                .ForMember(dto => dto.Username,
+                    cfg => cfg.MapFrom(entity => entity.Sender.Username))
+                .ForMember(dto => dto.UserAvatar,
+                    cfg => cfg.Ignore())
                 .ForMember(dto => dto.Image,
                     cfg => cfg.Ignore());
+
+            CreateMap<EditMessageRequestDTO, Message>();
 
             CreateMap<CreateMessageRequestDTO, Message>()
                 .ForMember(entity => entity.ChatId,

@@ -126,10 +126,21 @@ namespace MessengerServer.Controllers
                 return BadRequest();
             }
 
-            Chat chat = _mapper.Map<Chat>(request);
-            await _chatService.EditChatAsync(chat);
+            try
+            {
+                Chat chat = _mapper.Map<Chat>(request);
+                await _chatService.EditChatAsync(chat);
 
-            return Ok();
+                return Ok();
+            }
+            catch (NotUniqueException ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(new { error = ex.Message});
+            }
         }
 
         [HttpPost("delete")]

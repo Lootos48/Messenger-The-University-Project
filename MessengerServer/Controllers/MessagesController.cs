@@ -4,6 +4,7 @@ using MessengerServer.DAL;
 using MessengerServer.DAL.Entities;
 using MessengerServer.DTOs;
 using MessengerServer.DTOs.Message;
+using MessengerServer.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using System.Collections.Generic;
@@ -34,6 +35,21 @@ namespace MessengerServer.Controllers
             return Ok(messagesDTO);
         }
 
+        [HttpGet("{messageId:int}")]
+        public async Task<IActionResult> GetMessageById(int messageId)
+        {
+            try
+            {
+                Message message = await _messagesService.GetMessageById(messageId);
+                MessageDTO messageDTO = _mapper.Map<MessageDTO>(message);
+                return Ok(messageDTO);
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(new { error = ex.Message });
+            }
+        }
+
         [HttpPost("create")]
         public async Task<IActionResult> CreateMessage(CreateMessageRequestDTO request)
         {
@@ -46,17 +62,31 @@ namespace MessengerServer.Controllers
         [HttpPost("edit")]
         public async Task<IActionResult> EditMessage(EditMessageRequestDTO request)
         {
-            Message message = _mapper.Map<Message>(request);
-            await _messagesService.EditMessage(message);
+            try
+            {
+                Message message = _mapper.Map<Message>(request);
+                await _messagesService.EditMessage(message);
 
-            return Ok();
+                return Ok();
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(new { error = ex.Message});
+            }
         }
 
         [HttpPost("delete")]
         public async Task<IActionResult> Delete(int messageId)
         {
-            await _messagesService.DeleteMessage(messageId);
-            return Ok();
+            try
+            {
+                await _messagesService.DeleteMessage(messageId);
+                return Ok();
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(new { error = ex.Message });
+            }
         }
     }
 }

@@ -73,27 +73,33 @@ namespace MessengerServer.Controllers
         [HttpGet("{username}")]
         public async Task<IActionResult> GetUserByUsername(string username)
         {
-            User user = await _userService.GetUserByUsername(username);
-            if (user is null)
+            try
             {
-                return NotFound();
-            }
+                User user = await _userService.GetUserByUsername(username);
 
-            var userDTO = _mapper.Map<UserDTO>(user);
-            return Ok(userDTO);
+                var userDTO = _mapper.Map<UserDTO>(user);
+                return Ok(userDTO);
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound( new { error = ex.Message });
+            }
         }
 
         [HttpGet("{userId:int}")]
         public async Task<IActionResult> GetUserById(int userId)
         {
-            User user = await _userService.GetUserById(userId);
-            if (user is null)
+            try
             {
-                return NotFound();
-            }
+                User user = await _userService.GetUserById(userId);
 
-            var userDTO = _mapper.Map<UserDTO>(user);
-            return Ok(userDTO);
+                var userDTO = _mapper.Map<UserDTO>(user);
+                return Ok(userDTO);
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(new { error = ex.Message });
+            }
         }
 
         [HttpGet]
@@ -130,6 +136,10 @@ namespace MessengerServer.Controllers
             catch (NotUniqueException ex)
             {
                 return BadRequest(new { error = ex.Message });
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(new { error = ex.Message });
             }
         }
 

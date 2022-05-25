@@ -56,7 +56,6 @@ namespace MessengerServer.BLL
             }
 
             return user;
-            /*return BuildAuthResponse(loginUserRequest, user);*/
         }
 
         /// <summary>
@@ -73,9 +72,15 @@ namespace MessengerServer.BLL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Task<User> GetUserById(int id)
+        public async Task<User> GetUserById(int id)
         {
-            return _userRepository.FindByIdAsync(id);
+            User user = await _userRepository.FindByIdAsync(id);
+            if (user is null)
+            {
+                throw new NotFoundException("User was not found");
+            }
+
+            return user;
         }
 
         /// <summary>
@@ -83,9 +88,15 @@ namespace MessengerServer.BLL
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
-        public Task<User> GetUserByUsername(string username)
+        public async Task<User> GetUserByUsername(string username)
         {
-            return _userRepository.FindByUserNameAsync(username);
+            User user = await _userRepository.FindByUserNameAsync(username);
+            if (user is null)
+            {
+                throw new NotFoundException("User was not found");
+            }
+
+            return user;
         }
 
         /// <summary>
@@ -97,7 +108,12 @@ namespace MessengerServer.BLL
         public async Task EditAsync(UserEditRequestDTO request)
         {
             User user = await _userRepository.FindByUserNameAsync(request.Username);
-            if (user != null && user.Id != request.Id)
+            if (user is null)
+            {
+                throw new NotFoundException("User with that id wasn`t found");
+            }
+
+            if (user.Id != request.Id)
             {
                 throw new NotUniqueException("User with that username is already exist");
             }
@@ -127,21 +143,6 @@ namespace MessengerServer.BLL
         public Task DeleteAsync(User user)
         {
             return _userRepository.DeleteAsync(user);
-        }
-
-        private static UserAuthResponseDTO BuildAuthResponse(UserAuthRequestDTO loginUserRequest, User user)
-        {
-            UserAuthResponseDTO response = new UserAuthResponseDTO();
-            if (user is null || user.Password != loginUserRequest.password)
-            {
-                throw new NotFoundException("User with that credentials wasn`t found");
-            }
-            else
-            {
-                response.userID = user.Id;
-            }
-
-            return response;
         }
     }
 }
