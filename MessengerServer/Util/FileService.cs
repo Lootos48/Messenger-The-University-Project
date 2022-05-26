@@ -22,8 +22,7 @@ namespace MessengerServer.Util
             string uploads = Path.Combine(_webHostEnvironment.WebRootPath, "Uploads");
             string filePath = Path.Combine(uploads, $"{Guid.NewGuid()}.jpg");
 
-            string base64String = Convert.ToBase64String(file);
-            File.WriteAllBytes(uploads, Convert.FromBase64String(base64String));
+            File.WriteAllBytes(filePath, file);
 
             return filePath;
         }
@@ -33,8 +32,7 @@ namespace MessengerServer.Util
             string uploads = Path.Combine(_webHostEnvironment.WebRootPath, "Avatars");
             string filePath = Path.Combine(uploads, $"{Guid.NewGuid()}.jpg");
 
-            string base64String = Convert.ToBase64String(file);
-            File.WriteAllBytes(uploads, Convert.FromBase64String(base64String));
+            File.WriteAllBytes(filePath, file);
 
             return filePath;
         }
