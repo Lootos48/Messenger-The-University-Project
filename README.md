@@ -233,8 +233,6 @@ MESSENGER SERVER ACTIONS:
         Response:
             if (success)
                 status-code : 200
-                JSON :
-                    "chatId" | int
             if (title-is-not-unique)
                 status-code : 400
                 JSON :
@@ -254,8 +252,6 @@ MESSENGER SERVER ACTIONS:
         Response:
             if (success)
                 status-code : 200
-                JSON :
-                    "chatId" | int
             if (not-found)
                 status-code : 404
                 JSON :
@@ -312,14 +308,12 @@ MESSENGER SERVER ACTIONS:
             Type: POST
             JSON:
                 "text" | string |
-                "ImageBytes" | byte-array | nullable
+                "image" | form-input-file | nullable
                 "userId" | int | required
                 "chatId" | int | required
         Response:
             if (success)
                 status-code : 200
-                JSON :
-                    "chatId" | int
             if (invalid-request-data)
                 status-code : 400
                 JSON : "errors" | object-array
@@ -336,8 +330,6 @@ MESSENGER SERVER ACTIONS:
         Response:
             if (success)
                 status-code : 200
-                JSON :
-                    "chatId" | int
             if (not-found)
                 status-code : 404
                 JSON :
