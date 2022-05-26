@@ -306,7 +306,7 @@ MESSENGER SERVER ACTIONS:
         Link: http://localhost:4000/messages/create
         Request:
             Type: POST
-            JSON:
+            FORM-DATA:
                 "text" | string |
                 "image" | form-input-file | nullable
                 "userId" | int | required
