@@ -13,7 +13,7 @@
 }
 
 .chats__header {
-    background-color: gray;
+    background-color: dimgray;
     display: flex;
     align-items: center;
     padding: 2vw;
@@ -41,8 +41,8 @@
     grid-template-columns: 1fr 2fr 1fr;
     border-bottom: 2px solid black;
     grid-template-areas: 
-    "chatIcon chatName dateLastMessage"
-    "chatIcon lastMessage lastMessage";
+    "chatName dateLastMessage"
+    "lastMessage lastMessage";
     height: 6rem;
     padding: 1vw 2vw;
     justify-items: start;
@@ -87,24 +87,34 @@
     /* display: flex;
     flex-flow: column nowrap; */
     /* flex-grow: auto 1 auto; */
-    
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    align-content: start;
     overflow-y: auto;
     /* overscroll-behavior: contain; */
 }
 
+.main-page__messages {
+
+}
+
 .messages__header {
-    background-color: gray;
+    background-color: dimgray;
     align-items: center;
     padding: 0 2vw;
     border-right: 2px solid white;
     height: 6rem;
     display: grid;
-    grid-template-columns: min-content auto auto;
+    grid-template-columns: min-content auto;
     /* justify-content: start; */
     align-content: center;
     position: sticky;
     top: 0;
     z-index: 2;
+}
+
+.messages__list {
+    /* align-self: start; */
 }
 
 .messages__chat-icon {
@@ -134,10 +144,10 @@
     width: 100%;
 }
 
-.messages__list {
-    /* height: 80vh; */
-    /* position: relative; */
-}
+/* .messages__list {
+    height: 80vh;
+    position: relative;
+} */
 
 .message {
     display: grid;
@@ -148,9 +158,9 @@
     column-gap: 0.5vw;
 }
 
-.message > * {
-    /* border: 2px solid black; */
-}
+/* .message > * {
+    border: 2px solid black;
+} */
 
 .message__icon {
     width: 50px;
@@ -206,17 +216,16 @@
 .input {
     display: grid;
     grid-template-columns: 1fr 20fr 1fr;
-    
-    position: sticky;
-    bottom: 0;
-    right: 0;
+    align-self: end;
+    /* position: sticky;
+    bottom: -60px;
+    right: 0; */
     background-color: white;
     border-top: 2px solid black;
-
 }
 
-.input > * {
-}
+/* .input > * {
+} */
 
 .input__attach {
     padding: 0.2vw;

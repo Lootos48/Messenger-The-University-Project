@@ -22,26 +22,27 @@ window.addEventListener("click", (event) => {
     const target = event.target.closest("." + css["login__submit-button"]);
     if (target) {
         event.preventDefault();
-        // let test = document.body.querySelector("#login__user-name-input").value;
-        debugger;
+
         const loginQueryObj = {
-            query: "login",
-            email: document.body.querySelector("#login__user-name-input").value,
+            username: document.body.querySelector("#login__user-name-input").value,
             password: document.body.querySelector("#login__password-input").value,
         }
 
-        fetch("http://localhost:4000/api/users/login", {
+        fetch("http://localhost:4000/users/login", {
             method: "post",
             body: JSON.stringify(loginQueryObj),
             headers: {
                 "Content-Type": "application/json"
             }
         })
-            .then(response => response.JSON())
             .then(response => {
-                if (response.userID != null) {
-                    sessionStorage.setItem("userID", response.userID);
-                    // sessionStorage.setItem("userName", response.userName);
+                if (response.ok) { return response.json(); }
+                else { throw new Error(response.statusText) }
+            })
+            .then(response => {
+                if (response.userId != null) {
+                    sessionStorage.setItem("userID", response.userId);
+                    sessionStorage.setItem("userName", document.body.querySelector("#login__user-name-input").value);
                     window.location.assign("http://localhost:3000/mainPage");
                 }
                 else {
