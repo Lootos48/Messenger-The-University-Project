@@ -307,7 +307,7 @@ MESSENGER SERVER ACTIONS:
                 JSON : "error" | string               
                 
     CREATE MESSAGE
-        Link: http://localhost:4000/message/create
+        Link: http://localhost:4000/messages/create
         Request:
             Type: POST
             JSON:
