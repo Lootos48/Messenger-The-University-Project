@@ -16,7 +16,8 @@ MESSENGER SERVER JSON RESPONSES:
         
     MessageDTO:
         "id" | int
-        "sendtime" | DateTime
+        "sendtime" | string 
+        "senddate" | string
         "text" | string
         "image" | byte-array | nullable 
         "userId" | int 
