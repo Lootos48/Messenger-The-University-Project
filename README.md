@@ -30,9 +30,10 @@ MESSENGER SERVER ACTIONS:
         Link: http://localhost:4000/users/register
         Request:
             Type: POST
-            JSON:
+            FORM-DATA:
                 "username" | string | required | 20 characters max
                 "password" | string | required
+                "image" | form-input-file
         Response:
             if (success)
                 status-code : 200
@@ -233,8 +234,6 @@ MESSENGER SERVER ACTIONS:
         Response:
             if (success)
                 status-code : 200
-                JSON :
-                    "chatId" | int
             if (title-is-not-unique)
                 status-code : 400
                 JSON :
@@ -254,8 +253,6 @@ MESSENGER SERVER ACTIONS:
         Response:
             if (success)
                 status-code : 200
-                JSON :
-                    "chatId" | int
             if (not-found)
                 status-code : 404
                 JSON :
@@ -307,19 +304,17 @@ MESSENGER SERVER ACTIONS:
                 JSON : "error" | string               
                 
     CREATE MESSAGE
-        Link: http://localhost:4000/message/create
+        Link: http://localhost:4000/messages/create
         Request:
             Type: POST
-            JSON:
+            FORM-DATA:
                 "text" | string |
-                "ImageBytes" | byte-array | nullable
+                "image" | form-input-file | nullable
                 "userId" | int | required
                 "chatId" | int | required
         Response:
             if (success)
                 status-code : 200
-                JSON :
-                    "chatId" | int
             if (invalid-request-data)
                 status-code : 400
                 JSON : "errors" | object-array
@@ -336,8 +331,6 @@ MESSENGER SERVER ACTIONS:
         Response:
             if (success)
                 status-code : 200
-                JSON :
-                    "chatId" | int
             if (not-found)
                 status-code : 404
                 JSON :
