@@ -97,6 +97,8 @@ namespace MessengerServer.Util
                 .ForMember(dto => dto.Username,
                     cfg => cfg.MapFrom(entity => entity.Sender.Username))
                 .ForMember(dto => dto.SendTime,
+                    cfg => cfg.MapFrom(entity => entity.SendTime.ToShortTimeString()))
+                .ForMember(dto => dto.SendDate,
                     cfg => cfg.MapFrom(entity => entity.SendTime.ToShortDateString()))
                 .ForMember(dto => dto.UserAvatar,
                     cfg => cfg.Ignore())

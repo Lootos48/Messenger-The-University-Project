@@ -8,6 +8,8 @@ namespace MessengerServer.DTOs
 
         public string SendTime { get; set; }
 
+        public string SendDate { get; set; }
+        
         public string Text { get; set; }
 
         // nav property

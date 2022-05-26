@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MessengerServer.BLL.ChatsService">
+    <Position X="8.5" Y="2.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AACAAQAAAAAAAAAAAAABAAAAQAACAAAACAABAAAAAAA=</HashCode>
+      <FileName>BLL\ChatsService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.BLL.ImageService">
+    <Position X="3.25" Y="6.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>IQAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BLL\ImageService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.BLL.MessagesService">
+    <Position X="5.75" Y="2.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAQAAARAAAABAAAAAAACAACAAAAAAACAAAA=</HashCode>
+      <FileName>BLL\MessagesService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.BLL.UserPictureService">
+    <Position X="0.75" Y="2.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAQAAIA=</HashCode>
+      <FileName>BLL\UserPictureService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.BLL.UsersChatsService">
+    <Position X="0.75" Y="5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAABAABAAAAAAAAAQAAAAABAAgA=</HashCode>
+      <FileName>BLL\UsersChatsService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.BLL.UserService">
+    <Position X="3.25" Y="2.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>IgAAAAAoAAAAAAAAAAABAAAAABAAAAggAAAAAAAAAIA=</HashCode>
+      <FileName>BLL\UserService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.Controllers.ChatsController" Collapsed="true">
+    <Position X="5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAEAAACQAAAAAAAABAAAAAAEQAUAiIAAAAAAAIAA=</HashCode>
+      <FileName>Controllers\ChatsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.Controllers.MessagesController" Collapsed="true">
+    <Position X="8.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAQEAABAAAABAAAAAAEAEQCAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\MessagesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.Controllers.UsersController" Collapsed="true">
+    <Position X="6.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAEAAAAJAAAAAAAEAAABAAAAABABAAAAAAAUAAAQAwA=</HashCode>
+      <FileName>Controllers\UsersController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.DAL.Entities.BaseEntity">
+    <Position X="20.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DAL\Entities\BaseEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.DAL.Entities.Chat">
+    <Position X="20.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>DAL\Entities\Chat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.DAL.Entities.ChatsUsers" Collapsed="true">
+    <Position X="9" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAgAAAAAAAgAAAAAAAAAAAQ=</HashCode>
+      <FileName>DAL\Entities\ChatsUsers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.DAL.Entities.Image">
+    <Position X="16" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAEAAAAIAAAAAA=</HashCode>
+      <FileName>DAL\Entities\Image.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.DAL.Entities.Message">
+    <Position X="18" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQgAAAAAAAAAAAAAAAAAgAAAAAAAkAAAAACAAIAAQ=</HashCode>
+      <FileName>DAL\Entities\Message.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.DAL.Entities.User">
+    <Position X="25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAQQAAAAAAAAAAAACAAQAAQAAAAA=</HashCode>
+      <FileName>DAL\Entities\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.DAL.Entities.UserPicture">
+    <Position X="18.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAIAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DAL\Entities\UserPicture.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.DAL.Repositories.ChatRepository">
+    <Position X="16" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DAL\Repositories\ChatRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.DAL.Repositories.GenericRepository&lt;T&gt;">
+    <Position X="20.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAABAAAAAAAIAAAAAAAAAgAAAAAAIAAAIA=</HashCode>
+      <FileName>DAL\Repositories\GenericRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MessengerServer.DAL.Repositories.ImageRepository">
+    <Position X="22.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DAL\Repositories\ImageRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.DAL.Repositories.MessageRepository">
+    <Position X="18" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DAL\Repositories\MessageRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.DAL.Repositories.UserChatsRepository" Collapsed="true">
+    <Position X="9" Y="17.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEABAAAABAAAAAAAIAAAAAAAAAAgIAAAAAAAAAA=</HashCode>
+      <FileName>DAL\Repositories\UserChatsRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.DAL.Repositories.UserPictureRepository">
+    <Position X="24.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DAL\Repositories\UserPictureRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.DAL.Repositories.UserRepository">
+    <Position X="20.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAABAAAAAAAAAIAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DAL\Repositories\UserRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.DAL.MessengerDBContext" Collapsed="true">
+    <Position X="0.5" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAACAAAABAAAAAAAAEAAAABAAAAAAAQAAAAA=</HashCode>
+      <FileName>DAL\MessengerDBContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.DTOs.ChatDTO" Collapsed="true">
+    <Position X="2.5" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACACAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>DTOs\ChatDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.DTOs.MessageDTO" Collapsed="true">
+    <Position X="2.5" Y="16.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAASAAAAAAAAACAAAQAAAAgAAAABABAAAAAACAAAAAQ=</HashCode>
+      <FileName>DTOs\MessageDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.DTOs.UserDTO" Collapsed="true">
+    <Position X="2.5" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAABAQQAAAAAAAAAAAACAAAAAQAAAAA=</HashCode>
+      <FileName>DTOs\UserDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.DTOs.User.UserAuthRequestDTO" Collapsed="true">
+    <Position X="5.75" Y="20.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>DTOs\User\UserAuthRequestDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.DTOs.User.UserAuthResponseDTO" Collapsed="true">
+    <Position X="5.5" Y="21.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\User\UserAuthResponseDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.DTOs.User.UserEditRequestDTO" Collapsed="true">
+    <Position X="5.75" Y="19.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAQAAAAAAAAAAAAACAAAAAAAAIAA=</HashCode>
+      <FileName>DTOs\User\UserEditRequestDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.DTOs.User.UserRegisterRequestDTO" Collapsed="true">
+    <Position X="5.75" Y="21" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>DTOs\User\UserRegisterRequestDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.DTOs.Message.CreateMessageRequestDTO">
+    <Position X="6" Y="15.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAACAAAAAQ=</HashCode>
+      <FileName>DTOs\Message\CreateMessageRequestDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.DTOs.Message.EditMessageRequestDTO" Collapsed="true">
+    <Position X="6" Y="14.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>DTOs\Message\EditMessageRequestDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.DTOs.ChatsUsers.UserChatInteractRequestDTO" Collapsed="true">
+    <Position X="5.75" Y="18.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>DTOs\ChatsUsers\UserChatInteractRequestDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.DTOs.Chat.ChatCreateRequestDTO" Collapsed="true">
+    <Position X="4.5" Y="13.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEACAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\Chat\ChatCreateRequestDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.DTOs.Chat.ChatEditRequestDTO">
+    <Position X="6" Y="17.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\Chat\ChatEditRequestDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.Exceptions.NotFoundException" Collapsed="true">
+    <Position X="0.5" Y="13.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exceptions\NotFoundException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.Exceptions.NotUniqueException" Collapsed="true">
+    <Position X="0.5" Y="12.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exceptions\NotUniqueException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.Exceptions.ParametersValidationException" Collapsed="true">
+    <Position X="0.5" Y="11.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exceptions\ParametersValidationException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.Util.FileService">
+    <Position X="5.75" Y="6.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAIAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Util\FileService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessengerServer.Util.MessengerMappingProfile" Collapsed="true">
+    <Position X="9" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Util\MessengerMappingProfile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="MessengerServer.DAL.Repositories.Interfaces.IRepository&lt;T&gt;">
+    <Position X="22" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAIAAAAAAAAAgAAAAAAIAAAIA=</HashCode>
+      <FileName>DAL\Repositories\Interfaces\IRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
