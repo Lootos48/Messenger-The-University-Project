@@ -5,9 +5,13 @@ using MessengerServer.DAL.Entities;
 using MessengerServer.DTOs;
 using MessengerServer.DTOs.Message;
 using MessengerServer.Exceptions;
+using MessengerServer.Util;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace MessengerServer.Controllers
@@ -16,14 +20,20 @@ namespace MessengerServer.Controllers
     [ApiController]
     public class MessagesController : ControllerBase
     {
+        private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly MessagesService _messagesService;
+        private readonly ImageService _imageService;
         private readonly IMapper _mapper;
 
         public MessagesController(
+            IWebHostEnvironment environment,
             MessagesService messsagesService,
+            ImageService fileService,
             IMapper mapper)
         {
+            _webHostEnvironment = environment;
             _messagesService = messsagesService;
+            _imageService = fileService;
             _mapper = mapper;
         }
 
@@ -42,6 +52,10 @@ namespace MessengerServer.Controllers
             {
                 Message message = await _messagesService.GetMessageById(messageId);
                 MessageDTO messageDTO = _mapper.Map<MessageDTO>(message);
+
+                byte[] imageBytes = await FileService.ConvertFileToByteArray(message.Picture.Path);
+                messageDTO.Image = imageBytes;
+
                 return Ok(messageDTO);
             }
             catch (NotFoundException ex)
@@ -51,10 +65,32 @@ namespace MessengerServer.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> CreateMessage(CreateMessageRequestDTO request)
+        public async Task<IActionResult> CreateMessage([FromForm] CreateMessageRequestDTO request, IFormFile image)
         {
-            Message message = _mapper.Map<Message>(request);
-            await _messagesService.CreateMessage(message);
+            if (image != null)
+            {
+                string path = await FileService.SaveFileInUploadsFolder(_webHostEnvironment, image);
+
+                Message message = _mapper.Map<Message>(request);
+
+                int createdMessageId = await _messagesService.CreateMessage(message);
+                Image imageToCreate = new Image
+                {
+                    MessageId = createdMessageId,
+                    Path = path
+                };
+
+                int createdImageId = await _imageService.CreateImage(imageToCreate);
+
+                message.Id = createdMessageId;
+                message.ImageId = createdImageId;
+
+                await _messagesService.EditMessage(message);
+                return Ok();
+            }
+
+            Message messageToCreate = _mapper.Map<Message>(request);
+            await _messagesService.CreateMessage(messageToCreate);
 
             return Ok();
         }

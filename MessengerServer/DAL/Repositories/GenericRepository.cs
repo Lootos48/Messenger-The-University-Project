@@ -18,10 +18,11 @@ namespace MessengerServer.DAL.Repositories
             _dbSet = context.Set<T>();
         }
 
-        public Task CreateAsync(T item)
+        public async Task<int> CreateAsync(T item)
         {
             _dbSet.Add(item);
-            return _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
+            return item.Id;
         }
 
         public Task DeleteAsync(T item)

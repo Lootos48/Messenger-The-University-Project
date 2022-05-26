@@ -6,6 +6,8 @@ using MessengerServer.DAL.Repositories;
 using MessengerServer.DTOs;
 using MessengerServer.DTOs.User;
 using MessengerServer.Exceptions;
+using MessengerServer.Util;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
@@ -18,22 +20,28 @@ namespace MessengerServer.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly UserService _userService;
         private readonly UsersChatsService _usersChatsService;
+        private readonly UserPictureService _pictureService;
         private readonly IMapper _mapper;
 
         public UsersController(
+            IWebHostEnvironment webHostEnvironment,
             UserService userService,
             UsersChatsService usersChatsService,
+            UserPictureService pictureService,
             IMapper mapper)
         {
+            _webHostEnvironment = webHostEnvironment;
             _userService = userService;
             _usersChatsService = usersChatsService;
+            _pictureService = pictureService;
             _mapper = mapper;
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(UserRegisterRequestDTO registerUserRequest)
+        public async Task<IActionResult> Register([FromForm] UserRegisterRequestDTO request, IFormFile image)
         {
             if (!ModelState.IsValid)
             {
@@ -42,7 +50,29 @@ namespace MessengerServer.Controllers
 
             try
             {
-                var createdUser = await _userService.RegisterAsync(registerUserRequest);
+                if (image != null)
+                {
+                    string path = await FileService.SaveFileInAvatarsFolder(_webHostEnvironment, image);
+
+                    User user = _mapper.Map<User>(request);
+
+                    user = await _userService.RegisterAsync(user);
+                    UserPicture picture = new UserPicture
+                    {
+                        UserId = user.Id,
+                        Path = path
+                    };
+
+                    int createdImageId = await _pictureService.CreatePicture(picture);
+                    user.UserPictureId = createdImageId;
+
+                    await _userService.EditAsync(user);
+                    return Ok();
+                }
+
+                User userToCreate = _mapper.Map<User>(request);
+                var createdUser = await _userService.RegisterAsync(userToCreate);
+
                 return Ok(new { userId = createdUser.Id });
             }
             catch (NotUniqueException ex)

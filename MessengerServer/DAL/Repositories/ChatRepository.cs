@@ -22,6 +22,7 @@ namespace MessengerServer.DAL.Repositories
                         .ThenInclude(x => x.Avatar)
                 .Include(x => x.Users)
                     .ThenInclude(x => x.User)
+                        .ThenInclude(x => x.Avatar)
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 

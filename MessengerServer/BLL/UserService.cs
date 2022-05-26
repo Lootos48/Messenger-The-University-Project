@@ -27,18 +27,18 @@ namespace MessengerServer.BLL
         /// </summary>
         /// <param name="registerUserRequest"></param>
         /// <returns></returns>
-        public async Task<User> RegisterAsync(UserRegisterRequestDTO registerUserRequest)
+        public async Task<User> RegisterAsync(User request)
         {
-            User user = await _userRepository.FindByUserNameAsync(registerUserRequest.username);
+            User user = await _userRepository.FindByUserNameAsync(request.Username);
             if (user != null)
             {
                 throw new NotUniqueException("User with that username is already exist");
             }
 
-            user = _mapper.Map<User>(registerUserRequest);
+            user = _mapper.Map<User>(request);
             await _userRepository.CreateAsync(user);
 
-            user = await _userRepository.FindByUserNameAsync(registerUserRequest.username);
+            user = await _userRepository.FindByUserNameAsync(request.Username);
             return user;
         }
 
@@ -49,7 +49,7 @@ namespace MessengerServer.BLL
         /// <returns></returns>
         public async Task<User> LoginAsync(UserAuthRequestDTO loginUserRequest)
         {
-            User user = await _userRepository.FindByUserNameAsync(loginUserRequest.username);
+            User user = await _userRepository.FindWithUserCredentials(loginUserRequest.username, loginUserRequest.password);
             if (user is null)
             {
                 throw new NotFoundException("User with that credentials wasn`t found");
@@ -121,6 +121,11 @@ namespace MessengerServer.BLL
             user.Username = request.Username;
             user.Password = request.Password;
 
+            await _userRepository.UpdateAsync(user);
+        }
+
+        public async Task EditAsync(User user)
+        {
             await _userRepository.UpdateAsync(user);
         }
 

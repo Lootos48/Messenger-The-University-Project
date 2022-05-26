@@ -30,6 +30,7 @@ namespace MessengerServer.DAL.Repositories
         {
             return _dbSet
                 .Include(x => x.User)
+                    .ThenInclude(x => x.Avatar)
                 .Where(x => x.ChatId == chatID)
                 .ToListAsync();
         }

@@ -96,10 +96,24 @@ namespace MessengerServer.Util
             CreateMap<Message, MessageDTO>()
                 .ForMember(dto => dto.Username,
                     cfg => cfg.MapFrom(entity => entity.Sender.Username))
+                .ForMember(dto => dto.SendTime,
+                    cfg => cfg.MapFrom(entity => entity.SendTime.ToShortDateString()))
                 .ForMember(dto => dto.UserAvatar,
                     cfg => cfg.Ignore())
                 .ForMember(dto => dto.Image,
-                    cfg => cfg.Ignore());
+                    cfg => cfg.Ignore())
+                .AfterMap(async (entity, dto) =>
+                {
+                    if (entity.Picture != null)
+                    {
+                        dto.Image = await FileService.ConvertFileToByteArray(entity.Picture.Path);
+                    }
+
+                    if (entity.Sender.Avatar != null)
+                    {
+                        dto.UserAvatar = await FileService.ConvertFileToByteArray(entity.Sender.Avatar.Path);
+                    }
+                });
 
             CreateMap<EditMessageRequestDTO, Message>();
 
@@ -117,7 +131,14 @@ namespace MessengerServer.Util
                 .ForMember(dto => dto.Avatar,
                     cfg => cfg.Ignore())
                 .ForMember(dto => dto.Chats,
-                    cfg => cfg.MapFrom(entity => entity.Chats.Select(x => x.Chat).ToList()));
+                    cfg => cfg.MapFrom(entity => entity.Chats.Select(x => x.Chat).ToList()))
+                .AfterMap(async (entity, dto) =>
+                {
+                    if (entity.Avatar != null)
+                    {
+                        dto.Avatar = await FileService.ConvertFileToByteArray(entity.Avatar.Path);
+                    }
+                });
 
             CreateMap<Chat, ChatDTO>()
                 .ForMember(dto => dto.Users,

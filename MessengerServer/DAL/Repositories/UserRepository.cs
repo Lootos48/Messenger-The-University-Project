@@ -11,6 +11,14 @@ namespace MessengerServer.DAL.Repositories
         {
         }
 
+        public override Task<List<User>> GetAllAsync()
+        {
+            return _dbSet
+                .Include(x => x.Avatar)
+                .Include(x => x.Chats)
+                .ToListAsync();
+        }
+
         public Task<User> FindByUserNameAsync(string name)
         {
             return _dbSet
@@ -29,6 +37,16 @@ namespace MessengerServer.DAL.Repositories
                     .ThenInclude(x => x.Chat)
                 .Include(x => x.Messages)
                 .FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public Task<User> FindWithUserCredentials(string name, string password)
+        {
+            return _dbSet
+                .Include(x => x.Avatar)
+                .Include(x => x.Chats)
+                    .ThenInclude(x => x.Chat)
+                .Include(x => x.Messages)
+                .FirstOrDefaultAsync(x => x.Username == name && x.Password == password);
         }
     }
 }

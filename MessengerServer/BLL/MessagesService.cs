@@ -56,10 +56,11 @@ namespace MessengerServer.BLL
             return message;
         }
 
-        public Task CreateMessage(Message message)
+        public async Task<int> CreateMessage(Message message)
         {
             message.SendTime = DateTime.Now;
-            return _messageRepository.CreateAsync(message);
+            int createdMessageId = await _messageRepository.CreateAsync(message);
+            return createdMessageId;
         }
 
         public async Task EditMessage(Message request)
@@ -71,6 +72,7 @@ namespace MessengerServer.BLL
             }
 
             message.Text = request.Text;
+            message.ImageId = request.ImageId;
 
             await _messageRepository.UpdateAsync(message);
         }

@@ -17,7 +17,7 @@ namespace MessengerServer.DTOs
         public string Password { get; set; }
 
         // nav property
-        public byte?[] Avatar { get; set; }
+        public byte[] Avatar { get; set; }
 
         public IEnumerable<ChatDTO> Chats { get; set; } = new List<ChatDTO>();
         public IEnumerable<MessageDTO> Messages { get; set; } = new List<MessageDTO>();
