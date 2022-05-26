@@ -65,11 +65,11 @@ namespace MessengerServer.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> CreateMessage([FromForm] CreateMessageRequestDTO request, IFormFile image)
+        public async Task<IActionResult> CreateMessage(CreateMessageRequestDTO request)
         {
-            if (image != null)
+            if (request.ImageBytes != null)
             {
-                string path = await FileService.SaveFileInUploadsFolder(_webHostEnvironment, image);
+                string path = await FileService.SaveFileInUploadsFolder(_webHostEnvironment, request.ImageBytes);
 
                 Message message = _mapper.Map<Message>(request);
 

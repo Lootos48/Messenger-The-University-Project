@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -16,26 +17,24 @@ namespace MessengerServer.Util
             }
         }
 
-        public static async Task<string> SaveFileInUploadsFolder(IWebHostEnvironment _webHostEnvironment, IFormFile image)
+        public static async Task<string> SaveFileInUploadsFolder(IWebHostEnvironment _webHostEnvironment, byte[] file)
         {
             string uploads = Path.Combine(_webHostEnvironment.WebRootPath, "Uploads");
-            string filePath = Path.Combine(uploads, image.FileName);
-            using (Stream fileStream = new FileStream(filePath, FileMode.Create))
-            {
-                await image.CopyToAsync(fileStream);
-            }
+            string filePath = Path.Combine(uploads, $"{Guid.NewGuid()}.jpg");
+
+            string base64String = Convert.ToBase64String(file);
+            File.WriteAllBytes(uploads, Convert.FromBase64String(base64String));
 
             return filePath;
         }
 
-        public static async Task<string> SaveFileInAvatarsFolder(IWebHostEnvironment _webHostEnvironment, IFormFile image)
+        public static async Task<string> SaveFileInAvatarsFolder(IWebHostEnvironment _webHostEnvironment, byte[] file)
         {
             string uploads = Path.Combine(_webHostEnvironment.WebRootPath, "Avatars");
-            string filePath = Path.Combine(uploads, image.FileName);
-            using (Stream fileStream = new FileStream(filePath, FileMode.Create))
-            {
-                await image.CopyToAsync(fileStream);
-            }
+            string filePath = Path.Combine(uploads, $"{Guid.NewGuid()}.jpg");
+
+            string base64String = Convert.ToBase64String(file);
+            File.WriteAllBytes(uploads, Convert.FromBase64String(base64String));
 
             return filePath;
         }

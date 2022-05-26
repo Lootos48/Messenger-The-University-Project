@@ -10,5 +10,7 @@ namespace MessengerServer.DTOs.User
 
         [Required]
         public string password { get; set; }
+
+        public byte[] ImageBytes { get; set; }
     }
 }

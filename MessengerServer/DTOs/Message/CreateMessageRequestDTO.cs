@@ -12,5 +12,7 @@ namespace MessengerServer.DTOs.Message
 
         [Required]
         public int ChatId { get; set; }
+
+        public byte[] ImageBytes { get; set; }
     }
 }

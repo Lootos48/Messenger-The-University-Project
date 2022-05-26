@@ -41,7 +41,7 @@ namespace MessengerServer.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromForm] UserRegisterRequestDTO request, IFormFile image)
+        public async Task<IActionResult> Register(UserRegisterRequestDTO request)
         {
             if (!ModelState.IsValid)
             {
@@ -50,9 +50,9 @@ namespace MessengerServer.Controllers
 
             try
             {
-                if (image != null)
+                if (request.ImageBytes != null)
                 {
-                    string path = await FileService.SaveFileInAvatarsFolder(_webHostEnvironment, image);
+                    string path = await FileService.SaveFileInAvatarsFolder(_webHostEnvironment, request.ImageBytes);
 
                     User user = _mapper.Map<User>(request);
 
