@@ -24,27 +24,29 @@ window.addEventListener("click", (event) => {
         event.preventDefault();
 
         const registerQueryObj = {
-            query: "register",
-            email: document.body.querySelector("#register__user-name-input").value,
+            username: document.body.querySelector("#register__user-name-input").value,
             password: document.body.querySelector("#register__password-input").value,
         }
 
-        fetch("http://localhost:4000/api/users/register", {
+        fetch("http://localhost:4000/users/register", {
             method: "post",
             body: JSON.stringify(registerQueryObj),
             headers: {
                 "Content-Type": "application/json"
             }
         })
-            .then(response => response.JSON())
             .then(response => {
-                if (response.userID != null) {
-                    sessionStorage.setItem("userID", response.userID);
-                    sessionStorage.setItem("userName", response.userName);
+                if (response.ok) { return response.json(); }
+                else { throw new Error(response.statusText) }
+            })
+            .then(response => {
+                if (response.userId != null) {
+                    sessionStorage.setItem("userID", response.userId);
+                    sessionStorage.setItem("userName", document.body.querySelector("#register__user-name-input").value);
                     window.location.assign("http://localhost:3000/mainPage");
                 }
                 else {
-                    alert("Reject reason: " + response.rejectReason);
+                    alert("Reject reason: " + response.error);
                 }
             })
             .catch(error => {
