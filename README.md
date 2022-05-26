@@ -30,9 +30,10 @@ MESSENGER SERVER ACTIONS:
         Link: http://localhost:4000/users/register
         Request:
             Type: POST
-            JSON:
+            FORM-DATA:
                 "username" | string | required | 20 characters max
                 "password" | string | required
+                "image" | form-input-file
         Response:
             if (success)
                 status-code : 200
