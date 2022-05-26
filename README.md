@@ -31,10 +31,10 @@ MESSENGER SERVER ACTIONS:
         Link: http://localhost:4000/users/register
         Request:
             Type: POST
-            FORM-DATA:
+            JSON:
                 "username" | string | required | 20 characters max
                 "password" | string | required
-                "image" | form-input-file
+                "imagebytes" | byte-array | nullable
         Response:
             if (success)
                 status-code : 200
@@ -310,7 +310,7 @@ MESSENGER SERVER ACTIONS:
             Type: POST
             FORM-DATA:
                 "text" | string |
-                "image" | form-input-file | nullable
+                "imagebytes" | byte-array | nullable
                 "userId" | int | required
                 "chatId" | int | required
         Response:
