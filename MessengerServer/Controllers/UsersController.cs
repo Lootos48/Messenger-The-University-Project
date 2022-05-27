@@ -67,7 +67,7 @@ namespace MessengerServer.Controllers
                     user.UserPictureId = createdImageId;
 
                     await _userService.EditAsync(user);
-                    return Ok();
+                    return Ok(new { userId = user.Id });
                 }
 
                 User userToCreate = _mapper.Map<User>(request);
