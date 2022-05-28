@@ -18,5 +18,7 @@ namespace MessengerServer.DTOs.User
 
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
+
+        public byte[] ImageBytes { get; set; }
     }
 }

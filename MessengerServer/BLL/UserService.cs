@@ -12,15 +12,19 @@ namespace MessengerServer.BLL
     public class UserService
     {
         private readonly UserRepository _userRepository;
+        private readonly UserPictureRepository _userPictureRepository;
         private readonly IMapper _mapper;
 
         public UserService(
             UserRepository userRepository,
+            UserPictureRepository userPictureRepository,
             IMapper mapper)
         {
             _userRepository = userRepository;
+            _userPictureRepository = userPictureRepository;
             _mapper = mapper;
         }
+
 
         /// <summary>
         /// Create method
@@ -107,13 +111,13 @@ namespace MessengerServer.BLL
         /// <exception cref="ParametersValidationException"></exception>
         public async Task EditAsync(UserEditRequestDTO request)
         {
-            User user = await _userRepository.FindByUserNameAsync(request.Username);
+            User user = await _userRepository.FindByIdAsync(request.Id);
             if (user is null)
             {
                 throw new NotFoundException("User with that id wasn`t found");
             }
 
-            if (user.Id != request.Id)
+            if ((await _userRepository.GetAllAsync()).Any(x => x.Username == request.Username && x.Id != request.Id))
             {
                 throw new NotUniqueException("User with that username is already exist");
             }

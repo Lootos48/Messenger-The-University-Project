@@ -1,17 +1,13 @@
 ﻿using AutoMapper;
 using MessengerServer.BLL;
-using MessengerServer.DAL;
 using MessengerServer.DAL.Entities;
 using MessengerServer.DTOs;
 using MessengerServer.DTOs.Message;
 using MessengerServer.Exceptions;
 using MessengerServer.Util;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SignalR;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading.Tasks;
 
 namespace MessengerServer.Controllers

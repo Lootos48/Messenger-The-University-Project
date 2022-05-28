@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MessengerServer.DTOs
+﻿namespace MessengerServer.DTOs
 {
     public class MessageDTO
     {

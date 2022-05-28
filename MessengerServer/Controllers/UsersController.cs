@@ -1,16 +1,12 @@
 ﻿using AutoMapper;
 using MessengerServer.BLL;
-using MessengerServer.DAL;
 using MessengerServer.DAL.Entities;
-using MessengerServer.DAL.Repositories;
 using MessengerServer.DTOs;
 using MessengerServer.DTOs.User;
 using MessengerServer.Exceptions;
 using MessengerServer.Util;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SignalR;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -160,6 +156,8 @@ namespace MessengerServer.Controllers
 
             try
             {
+
+
                 await _userService.EditAsync(request);
                 return Ok();
             }

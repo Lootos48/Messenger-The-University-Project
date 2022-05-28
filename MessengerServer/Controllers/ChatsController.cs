@@ -1,13 +1,10 @@
 ﻿using AutoMapper;
 using MessengerServer.BLL;
-using MessengerServer.DAL;
 using MessengerServer.DAL.Entities;
-using MessengerServer.DAL.Repositories;
 using MessengerServer.DTOs;
 using MessengerServer.DTOs.Chat;
 using MessengerServer.DTOs.ChatsUsers;
 using MessengerServer.Exceptions;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;

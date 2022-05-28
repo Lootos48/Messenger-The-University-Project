@@ -1,7 +1,5 @@
 ﻿using MessengerServer.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MessengerServer.DAL.Repositories

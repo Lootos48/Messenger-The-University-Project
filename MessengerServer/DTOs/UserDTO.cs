@@ -1,5 +1,4 @@
-﻿using MessengerServer.DAL.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace MessengerServer.DTOs
