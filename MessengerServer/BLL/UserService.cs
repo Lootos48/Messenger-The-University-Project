@@ -3,6 +3,8 @@ using MessengerServer.DAL.Entities;
 using MessengerServer.DAL.Repositories;
 using MessengerServer.DTOs.User;
 using MessengerServer.Exceptions;
+using MessengerServer.Util;
+using Microsoft.AspNetCore.Hosting;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -109,7 +111,7 @@ namespace MessengerServer.BLL
         /// <param name="request"></param>
         /// <returns></returns>
         /// <exception cref="ParametersValidationException"></exception>
-        public async Task EditAsync(UserEditRequestDTO request)
+        public async Task EditAsync(IWebHostEnvironment webHostEnvironment, UserEditRequestDTO request)
         {
             User user = await _userRepository.FindByIdAsync(request.Id);
             if (user is null)
@@ -124,6 +126,15 @@ namespace MessengerServer.BLL
 
             user.Username = request.Username;
             user.Password = request.Password;
+
+            if (request.ImageBytes != null)
+            {
+                string newPath = await FileService.SaveFileInAvatarsFolder(webHostEnvironment, request.ImageBytes);
+                UserPicture img = await _userPictureRepository.FindByIdAsync(user.UserPictureId.Value);
+
+                img.Path = newPath;
+                await _userPictureRepository.UpdateAsync(img);
+            }
 
             await _userRepository.UpdateAsync(user);
         }

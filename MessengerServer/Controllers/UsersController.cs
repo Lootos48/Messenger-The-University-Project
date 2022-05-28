@@ -156,9 +156,7 @@ namespace MessengerServer.Controllers
 
             try
             {
-
-
-                await _userService.EditAsync(request);
+                await _userService.EditAsync(_webHostEnvironment, request);
                 return Ok();
             }
             catch (NotUniqueException ex)
