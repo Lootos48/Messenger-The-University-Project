@@ -144,7 +144,7 @@ MESSENGER SERVER ACTIONS:
                     "request-field" | string-array of errors
     
      DELETE USER
-        Link: http://localhost:4000/users/delete?={userId}
+        Link: http://localhost:4000/users/delete?userId={userId}
         Request:
             Type: POST
             VALUE:
@@ -268,7 +268,7 @@ MESSENGER SERVER ACTIONS:
                     "request-field" | string-array of errors
                     
      DELETE CHAT
-        Link: http://localhost:4000/chats/delete?={chatId}
+        Link: http://localhost:4000/chats/delete?chatId={chatId}
         Request:
             Type: POST
             VALUE:
@@ -338,7 +338,7 @@ MESSENGER SERVER ACTIONS:
                     "error" | string
             
      DELETE MESSAGE
-        Link: http://localhost:4000/messages/delete?={messageId}
+        Link: http://localhost:4000/messages/delete?messageId={messageId}
         Request:
             Type: POST
             VALUE:
