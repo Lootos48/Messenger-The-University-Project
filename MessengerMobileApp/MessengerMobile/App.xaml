@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Messenger.App"
+             xmlns:converters="clr-namespace:MessengerMobile.Converters"
+             xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms">
+    <Application.Resources>
+        <Color x:Key="DarkColor">#000000</Color>
+        <Color x:Key="PrimaryColor">#313638</Color>
+        <Color x:Key="SecondaryColor">#F06543</Color> 
+        <Color x:Key="WhiteColor">#FFFFFF</Color>
+        <!-- Application resource dictionary -->
+
+        <!--Navigation bar-->
+        <Style TargetType="NavigationPage">
+            <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryColor}"/>
+            <Setter Property="BarTextColor" Value="{StaticResource WhiteColor}"/>
+        </Style>
+
+        <!--Sign in Button Style-->
+        <Style x:Key="ButtonFrameStyle" TargetType="Frame">
+            <Setter Property="BackgroundColor" Value="{StaticResource SecondaryColor}" />
+            <Setter Property="CornerRadius" Value="100" />
+            <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="WidthRequest" Value="250" />
+            <Setter Property="HeightRequest" Value="50" />
+            <Setter Property="Padding" Value="0" />
+        </Style>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="{StaticResource SecondaryColor}" />
+            <Setter Property="TextColor" Value="{StaticResource WhiteColor}"/>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="CornerRadius" Value="100" />
+        </Style>
+
+        <!--Sign in Button Style-->
+        <Style x:Key="SignUpButtonFrameStyle" TargetType="Frame">
+            <Setter Property="BackgroundColor" Value="{StaticResource WhiteColor}" />
+            <Setter Property="CornerRadius" Value="100" />
+            <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="WidthRequest" Value="250" />
+            <Setter Property="HeightRequest" Value="50" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="BorderColor" Value="{StaticResource SecondaryColor}" />
+        </Style>
+        <Style x:Key="SignUpButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="{StaticResource WhiteColor}" />
+            <Setter Property="TextColor" Value="{StaticResource SecondaryColor}"/>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="CornerRadius" Value="100" />
+            <Setter Property="BorderColor" Value="{StaticResource SecondaryColor}" />
+            <Setter Property="BorderWidth" Value="1" />
+            
+        </Style>
+
+        <converters:BooleanToVisibility x:Key="BooleanToVisibility"/>
+
+    </Application.Resources>
+</prism:PrismApplication>

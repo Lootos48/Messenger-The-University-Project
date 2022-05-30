@@ -1,5 +1,6 @@
 ﻿using MessengerServer.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MessengerServer.DAL.Repositories
@@ -8,6 +9,14 @@ namespace MessengerServer.DAL.Repositories
     {
         public ChatRepository(DbContext context) : base(context)
         {
+        }
+
+        public override Task<List<Chat>> GetAllAsync()
+        {
+            return _dbSet
+                .Include(x => x.Users)
+                    .ThenInclude(x => x.User)
+                    .ToListAsync();
         }
 
         public override Task<Chat> FindByIdAsync(int id)

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MessengerMobile.Views.AddChatPage"
+             Title="Create chat">
+
+    <ContentPage.Content>
+        <StackLayout Spacing="25" Margin="30,30,30,50" VerticalOptions="Center">
+            <Label Text="Enter chat name:" FontSize="18"/>
+            <Entry Text="{Binding Chatname}" 
+                   Placeholder="Chatname" />
+            <Button Style="{StaticResource ButtonStyle}" Text="Create chat" Command="{Binding SaveChatCommand}"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MessengerMobile.Views.SignUpPage"
+             Title="Sign up">
+    <StackLayout 
+                 VerticalOptions="Center"
+                     Margin="20,0">
+        <Button  Style="{StaticResource SignUpButtonStyle}"
+                        Text="Upload avatar" 
+                        Command="{Binding PickAvatarCommand}" 
+                        HorizontalOptions="Center" 
+                        Margin="0,0,0,30"></Button>
+
+
+        <Entry Text="{Binding Username}" Placeholder="Name"></Entry>
+        <Entry Text="{Binding Password}" Placeholder="Password" IsPassword="True"></Entry>
+        <Entry Text="{Binding ConfirmPassword}" Placeholder="Confirm password" IsPassword="True"></Entry>
+        <Button Style="{StaticResource ButtonStyle}"
+                        Text="Register"
+                        Command="{Binding RegisterCommand}"/>
+
+    </StackLayout>
+</ContentPage>

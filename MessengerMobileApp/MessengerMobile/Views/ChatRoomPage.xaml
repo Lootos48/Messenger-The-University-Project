@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MessengerMobile.Views.ChatRoomPage"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Name="this"
+             Title="{Binding ChatName}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="Add user"
+                     Command="{Binding AddUserToChatCommand}"
+                     IconImageSource="adduserIcon.png"/>
+        <ToolbarItem Name="Info"
+                     Command="{Binding GetChatInfoCommand}"
+                     IconImageSource="infoIcon.png"/>
+    </ContentPage.ToolbarItems>
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" VerticalOptions="Center" Spacing="0" Margin="0,0,0,0">
+            <ImageButton Source="arrowIcon.png"
+                         HorizontalOptions="Start"
+                         HeightRequest="32"
+                         WidthRequest="32"
+                         BackgroundColor="{StaticResource PrimaryColor}"
+                         Command="{Binding GoBackCommand}"
+                         />
+            <Label 
+                Text="{Binding ChatName}" 
+                VerticalOptions="Center" 
+                FontSize="24" 
+                TextColor="White" 
+                Margin="20,0,0,0"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <Grid RowDefinitions="*, auto" ColumnDefinitions="60, *, 60">
+        <RefreshView Grid.ColumnSpan="3" IsRefreshing="{Binding IsRefreshing}" RefreshColor="{StaticResource SecondaryColor}" Command="{Binding RefreshPageCommand}">
+            <ListView  ItemsSource="{Binding MessageList}" HasUnevenRows="True" SeparatorVisibility="None" Grid.ColumnSpan="3">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                        
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Edit"
+                                        Command="{Binding Path=BindingContext.OnEditTapCommand, Source={x:Reference this}}" CommandParameter="{x:Binding .}"  
+                                          IconImageSource="editIcon.png"/>
+                                <MenuItem Text="Delete"
+                                        Command="{Binding Path=BindingContext.OnDeleteTapCommand, Source={x:Reference this}}" CommandParameter="{x:Binding .} "  IsDestructive="True"
+                                          IconImageSource="deleteIcon.png"/>
+                                
+                            </ViewCell.ContextActions>
+
+                            <Grid RowDefinitions="auto, auto">
+                                <Grid IsVisible="{Binding IsOwner}">
+                                    <StackLayout Margin="100,3,5,3">
+
+                                        <yummy:PancakeView IsVisible="{Binding HasMessage}"
+                                            CornerRadius="12,4,12,12" 
+                                            HorizontalOptions="End" 
+                                            Margin="0" 
+                                            BackgroundColor="{StaticResource SecondaryColor}"
+                                            Padding="10">
+                                            <StackLayout>
+                                                <Image Source="{Binding ImagePath}" IsVisible="{Binding HasPicture}"/>
+                                                <Label Text="{Binding Text}"
+                                                   TextColor="{StaticResource WhiteColor}" 
+                                               
+                                                   FontSize="16"
+                                               
+                                                   LineBreakMode="WordWrap"
+                                                       HorizontalOptions="End"/>
+                                                <Label Text="{Binding SendTime}" FontAttributes="Bold" HorizontalOptions="End" TextColor="#A03B23"/>
+                                               
+                                            </StackLayout>
+                                        </yummy:PancakeView>
+                                    </StackLayout>
+                                </Grid>
+
+                                <Grid IsVisible="{Binding IsOwner, Converter={StaticResource BooleanToVisibility}, ConverterParameter=Inverse}">
+                                    <StackLayout Margin="5,3,100,3">
+                                        <Label Text="{Binding Username}"/>
+
+                                        <yummy:PancakeView IsVisible="{Binding HasMessage}"
+                                            CornerRadius="4,12,12,12" 
+                                            HorizontalOptions="Start" 
+                                            Margin="0" BackgroundColor="{StaticResource PrimaryColor}"
+                                            Padding="10">
+                                            <StackLayout>
+                                                <Image Source="{Binding ImagePath}" IsVisible="{Binding HasPicture}"/>
+                                                <Label Text="{Binding Text}" 
+                                                FontSize="16"
+                                                TextColor="{StaticResource WhiteColor}" 
+                                                LineBreakMode="WordWrap"/>
+                                                <Label Text="{Binding SendTime}" FontAttributes="Bold" HorizontalOptions="Start" TextColor="#79858A"/>
+                                            </StackLayout>
+                                        </yummy:PancakeView>
+                                    </StackLayout>
+                                </Grid>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.DisableRefreshCommand, Source={x:Reference this}}" 
+                                                              CommandParameter="{x:Binding .}"
+                                                              NumberOfTapsRequired="1"/>
+                                </Grid.GestureRecognizers>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </RefreshView>
+        
+        <ImageButton 
+            Margin="10,0,0,10" 
+            BackgroundColor="White" 
+            Grid.Row="1" 
+            Grid.Column="0" 
+            Command="{Binding AttachImageCommand}" 
+            Source="attachButton.png"/>
+
+        <Frame 
+            Grid.Row="1" 
+            Grid.Column="1" 
+            HeightRequest="5"
+            Margin="0,0,0,17"
+            BackgroundColor="White"
+            BorderColor="Black" 
+            CornerRadius="30"/>
+        <Entry 
+            Margin="10,0,10,10" 
+            Grid.Row="1" 
+            Grid.Column="1" 
+            Text="{Binding Message}"/>
+
+        <ImageButton 
+            Margin="0,0,10,10" 
+            BackgroundColor="White" 
+            Grid.Row="1" 
+            Grid.Column="2" 
+            Command="{Binding SendMsgCommand}" Source="sendButton.png"/>
+    </Grid>
+</ContentPage>

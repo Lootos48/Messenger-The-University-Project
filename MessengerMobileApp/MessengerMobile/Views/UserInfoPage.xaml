@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MessengerMobile.Views.UserInfoPage"
+             Title="{Binding Username}">
+
+    
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="Edit user"
+                     Command="{Binding EditUserCommand}"
+                     IconImageSource="saveIcon.png"/>
+    </ContentPage.ToolbarItems>
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" VerticalOptions="Center" Spacing="0" Margin="0,0,0,0">
+            <ImageButton Source="arrowIcon.png"
+                         HorizontalOptions="Start"
+                         HeightRequest="32"
+                         WidthRequest="32"
+                         BackgroundColor="{StaticResource PrimaryColor}"
+                         Command="{Binding GoBackCommand}"
+                         />
+            <Label 
+                Text="{Binding Username}" 
+                VerticalOptions="Center" 
+                FontSize="24" 
+                TextColor="White" 
+                Margin="20,0,0,0"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+
+    <ContentPage.Content>
+        <StackLayout  Margin="30,30,30,0" >
+            <Image Source="{Binding ImagePath}" HeightRequest="180" >
+                <Image.Clip>
+                    <EllipseGeometry Center="170, 80"
+                                     RadiusX="80"
+                                     RadiusY="80"/>
+                </Image.Clip>
+            </Image>
+
+            <Button  Style="{StaticResource SignUpButtonStyle}"
+                        Text="Upload another avatar" 
+                        Command="{Binding EditAvatarCommand}" 
+                        HorizontalOptions="Center" 
+                        Margin="0,0,0,30"></Button>
+
+            <Label Text="Your name" Margin="0,25,0,0"/>
+            <Entry Text="{Binding Username}"></Entry>
+            
+            <Label Text="Password" Margin="0,15,0,0"/>
+            <Entry Text="{Binding Password}"></Entry>
+            
+            <Label Text="Confirm password" Margin="0,15,0,0"/>
+            <Entry Text="{Binding ConfirmPassword}"></Entry>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
