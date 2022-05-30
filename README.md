@@ -338,7 +338,7 @@ MESSENGER SERVER ACTIONS:
                     "error" | string
             
      DELETE MESSAGE
-        Link: http://localhost:4000/messages/delete?={messageId}
+        Link: http://localhost:4000/messages/delete?messageId={messageId}
         Request:
             Type: POST
             VALUE:
