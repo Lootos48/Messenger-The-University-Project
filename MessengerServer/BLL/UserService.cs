@@ -130,10 +130,18 @@ namespace MessengerServer.BLL
             if (request.ImageBytes != null)
             {
                 string newPath = await FileService.SaveFileInAvatarsFolder(webHostEnvironment, request.ImageBytes);
-                UserPicture img = await _userPictureRepository.FindByIdAsync(user.UserPictureId.Value);
 
-                img.Path = newPath;
-                await _userPictureRepository.UpdateAsync(img);
+                if (user.UserPictureId.HasValue)
+                {
+                    UserPicture img = await _userPictureRepository.FindByIdAsync(user.UserPictureId.Value);
+
+                    img.Path = newPath;
+                    await _userPictureRepository.UpdateAsync(img);
+                }
+                else
+                {
+                    await _userPictureRepository.CreateAsync(new UserPicture { Path = newPath, UserId = user.Id });
+                }
             }
 
             await _userRepository.UpdateAsync(user);

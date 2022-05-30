@@ -1,0 +1,39 @@
+.starting-page__icon {
+    width: 30vw;
+    margin: 0 auto;
+}
+
+.starting-page__icon img {
+    width: 100%;
+}
+
+.starting-page__title {
+    margin: 0 auto;
+    font-size: 2rem;
+    width: fit-content;
+}
+
+.starting-page__links {
+    margin: 10vh auto;
+    display: flex;
+}
+
+.starting-page__link {
+    margin: 0 auto;
+    display: block;
+    background-color: orangered;
+    color: white;
+    width: fit-content;
+    padding: 1vw;
+    border-radius: 10px;
+    transition-duration: 0.3s;
+}
+
+.starting-page__link:hover,
+.starting-page__link:focus {
+    transform: scale(1.2);
+}
+
+.starting-page__link:active {
+    transform: scale(0.8);
+}
